@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>6789俱乐部</title>
+    <meta name="keywords" content="BBS,社区">
+    <meta name="description" content="------------这里是6789的描述----------------。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" href="app/views/img/favicon.ico" tppabs="http://bbs.bangke.com/app/views/img/favicon.ico" mce_href="/app/views/img/favicon.ico"
+        type="image/x-icon">
+    <link href="app/views/js/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="app/views/font-awesome/css/font-awesome.css-v=4.3.0.css" tppabs="http://bbs.bangke.com/app/views/font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+    <link href="app/views/css/jquery.fancybox.css-v=2.1.5.css" tppabs="http://bbs.bangke.com/app/views/css/jquery.fancybox.css?v=2.1.5" rel="stylesheet">
+    <link href="app/views/css/animate.css" tppabs="http://bbs.bangke.com/app/views/css/animate.css" rel="stylesheet">
+    <link href="app/views/css/base.css-v=2.2.0.css" tppabs="http://bbs.bangke.com/app/views/css/base.css?v=2.2.0" rel="stylesheet">
+    <script src="app/views/js/jquery/1.11.3/jquery.min.js" tppabs="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="app/views/js/vendor/layer/layer.js" tppabs="http://bbs.bangke.com/app/views/js/vendor/layer/layer.js" type="text/javascript"></script>
+</head>
+<body>
+    <img src="Assets/img/loading1.png" tppabs="http://i.bangke.com/assets/img/loading1.png" style="display: none" />
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 text-navy " style="font-size: 20px;"
+                            href="../index.htm" tppabs="http://bbs.bangke.com/">6789Club </a>
+                        <div role="search" class="navbar-form-custom" action="">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
+                                    id="top-search">
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right pull-right count-info">
+                            <li>
+                                <div id="login" style="display: none">
+                                    <img width="220px" height="220px" id="wxAuthLoginQrCode" />
+                                    <p id="wbt" style="text-align: center">
+                                        使用微信扫一扫,授权登录.</p>
+                                </div>
+                                <div id="gz" style="display: none; text-align: center;">
+                                    <img width="220px" src="../../mp.weixin.qq.com/cgi-bin/showqrcode-ticket=gQEL8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2swaVN6d0xseGFpODBWYTQzbUFkAAIE9gtQVwMEAAAAAA==" tppabs="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEL8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2swaVN6d0xseGFpODBWYTQzbUFkAAIE9gtQVwMEAAAAAA==" />
+                                    <p id="wbt" style="text-align: center">
+                                        扫描二维码关注帮客微信公众号<br />
+                                        更多精彩让你high~</p>
+                                    <p id="wxt" style="text-align: center">
+                                        长按识别二维码,关注微信公众号.</p>
+                                </div>
+                                <script>
+                                    var isWx = true;
+                                    var l = '665923768';
+                                    window.onload = function () {
+                                        isWx = window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger';
+                                        if (isWx) {
+                                            $('#wbt').remove();
+                                        } else {
+                                            $('#wxt').remove();
+                                        }
+                                    };
+
+                                    var isExitAuth = false;
+                                    function testWxAuthLogin() {
+                                        if (isExitAuth) {
+                                            return;
+                                        }
+
+                                        loadData('TestWxAuthLogin', { l: l }, function (rs) {
+                                            if (rs && rs != "lost") {
+                                                p.utk(rs);
+                                                layer.msg('登录成功! ', reload);
+                                            }
+                                            else {
+                                                testWxAuthLogin();
+                                            }
+                                        });
+                                    }
+
+                                    function endWxAuth() {
+                                        isExitAuth = true;
+                                        layer.closeAll();
+                                    }
+
+                                    function popAuthLogin() {
+                                        isExitAuth = false;
+                                        loadData('GetWxAuthQrCodeUrl', { actionName: 'BbsLogin', param: l }, function (rt) {
+                                            $('#wxAuthLoginQrCode').attr('src', rt);
+                                            layer.alert($('#login').html(), { title: '微信登录', area: '260px', success: testWxAuthLogin, end: endWxAuth });
+                                        });
+                                        layer.load();
+                                    }
+                                </script>
+                                <div class="user-login">
+                                    <a class="btn btn-primary btn-xs" onclick="if(isWx){ GoAuth(); }else{ popAuthLogin() ;};">
+                                        微信登录</a>
+                                    <span class="or">or</span>
+                                    <a class="btn btn-success btn-xs" onclick="layer.alert($('#gz').html())">更多精彩</a>
+                                </div>
+                            </li>
+                    </ul>
+                </nav>
+            </div>
+            <link href="../resource/Style__4755A96EF3B41AF9.css" tppabs="http://bbs.bangke.com/resource/Style__4755A96EF3B41AF9" type="text/css" rel="stylesheet" />
+            <script type="text/javascript" src="Assets/js/jquery.lazyload.min.js" tppabs="http://i.bangke.com/Assets/js/jquery.lazyload.min.js"></script>
+            <script src="Assets/js/ma.js-v=3" tppabs="http://i.bangke.com/Assets/js/ma.js?v=3"></script>
+            <script type="text/javascript" src="../resource/Script__4B1CC929B4E0D4A0" tppabs="http://bbs.bangke.com/resource/Script__4B1CC929B4E0D4A0"></script>
+            <div class="row wrapper border-bottom navy-bg page-heading">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a href="../index.htm" tppabs="http://bbs.bangke.com/">主页</a>
+            </li>
+            <li><strong>用户资料</strong> </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div id="profile-info" class="row profile-info">
+        <div class="col-md-8">
+            <div class="panel blank-panel">
+                <div class="panel-heading ibox-title">
+                    <div class="panel-title m-b-md">
+                        <h4>
+                            TA
+                            的动态
+                        </h4>
+                    </div>
+                    <div class="panel-options">
+                        <ul class="nav nav-tabs profile-type">
+                            <li><a bd="tab-topic">帖子 </a>
+                            </li>
+                            <li><a style="padding: 10px 15px 10px 15px;" bd="tab-reply">回复 </a>
+                            </li>
+                            <li><a style="padding: 10px 15px 10px 15px;" bd="tab-fans">粉丝 </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body ibox-content ibox float-e-margins">
+                    <div class="tab-content">    
+                    <div id="tab-collection">
+            <div class="feed-activity-list" v-for="topic in collections">
+                <div class="feed-element">
+                    <div class="media-body ">
+                        <small class="pull-right text-navy"><small class="pull-right">
+                            <span class="praise-num">
+                                <span class="ico"><i class="fa fa-thumbs-o-up"></i></span>
+                                0 &nbsp; </span>
+                        </small></small><strong><a href="/Read/543">【亲子帮】9月24日手作课堂再开课~只知道吃水果？快来看水果印画！</a></strong>
+                        <br>
+                        <small class="text-muted">16年 9月23日 10:18 来自 Windows10</small>
+                    </div>
+                </div>
+            </div>
+    </div>
+<div class="pages"><ul><script>_itemCount = 1;</script></ul></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        用户资料</h5>
+                </div>
+                <div>
+                    <div class="ibox-content no-padding border-left-right avatar-banner">
+                        <img alt="image" class="img-responsive" src="app/views/img/pbg.jpg" tppabs="http://bbs.bangke.com/app/views/img/pbg.jpg" style="width: 100%">
+                        <div class="profile-shade">
+                            <img class="img-circle profile-big-avatar" src="../../wx.qlogo.cn/mmopen/50HcP4UOeLVIt7h6Iy1JU299DZE9hYOX1SlTqgTO9NZ1I1e0n4RyxDj3PyhXZANYZEiatwOtn9couZYkyw273eQ/0.jpg" tppabs="http://wx.qlogo.cn/mmopen/50HcP4UOeLVIt7h6Iy1JU299DZE9hYOX1SlTqgTO9NZ1I1e0n4RyxDj3PyhXZANYZEiatwOtn9couZYkyw273eQ/0" alt="image">
+                        </div>
+                    </div>
+                    <div class="ibox-content profile-content">
+                        <h4>
+                            <strong>承志</strong>
+                            <span class="text-warning" style="margin-top: -20px;"><i class="iconfont icon-guanliyuan">
+                            </i>
+                                <span class="sm-text">大侠</span>
+                            </span>
+                        </h4>
+                        <p>
+                            <a  >
+                                <strong>169600</strong></a>
+                            金币
+                        </p>
+                        <div class="row m-t-lg" style="border-top: 1px solid #EFEFEF; padding: 30px 0;">
+                            <div style="width: 33.3%; float: left;">
+                                <span class="bar"><strong>21</strong></span>
+                                <h5>
+                                    帖子</h5>
+                            </div>
+                            <div style="width: 33.3%; float: left;">
+                                <span class="line"><strong>176</strong></span>
+                                <h5>
+                                    回复</h5>
+                            </div>
+                            <div style="width: 33.3%; float: left;">
+                                <span class="bar"><strong>0</strong></span>
+                                <h5>
+                                    粉丝</h5>
+                            </div>
+                        </div>
+                            <div class="user-button">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a class="do-whisper btn btn-primary btn-sm btn-block" data-myid="0" data-at_uid="6" data-whisper="5">
+                                            <i class="fa fa-envelope"></i>发送消息</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a id="focusfan" class="do-follow btn btn-danger btn-sm btn-block" data-myid="0" data-fuid="6">
+                                            <i class="fa fa-heart"></i>
+                                            
+                                            关注TA</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script> 
+    var uid = 6;  
+</script>
+<script type="text/javascript" src="resource/Script__10A58712B8E7FED0" tppabs="http://bbs.bangke.com/resource/Script__10A58712B8E7FED0"></script>
+
+            <div class="footer">
+                <div class="pull-right mobile-hide">
+                    苏ICP备13055054号-2.
+                </div>
+                <div>
+                    Copyright &copy; 2016 江苏嬉戏谷科技有限公司
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app/views/js/bootstrap/3.3.5/js/bootstrap.min.js" tppabs="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="app/views/js/jweixin-1.0.0.js" tppabs="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="resource/Script__26F1BB2674E922FB" tppabs="http://bbs.bangke.com/resource/Script__26F1BB2674E922FB"></script>
+    <script>
+        wx.ready(function () {
+            wx.hideMenuItems({
+                menuList: ['menuItem:share:qq', 'menuItem:share:QZone', 'menuItem:copyUrl', 'menuItem:openWithQQBrowser', 'menuItem:openWithSafari']
+            });
+
+            wxShare("6789俱乐部·因趣而生。", "6789俱乐部·因趣而生。", "6789俱乐部·因趣而生。", "", "Assets/img/6789Logo2.png"/*tpa=http://i.bangke.com/Assets/img/6789Logo2.png*/, function () {
+                layer.msg("分享成功!");
+            });
+        });
+    </script>
+</body>
+</html>

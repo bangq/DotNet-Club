@@ -1,0 +1,457 @@
+var p = {
+    page_controller: "",
+    page_extension: "",
+    service_address: "",
+    init: function () {
+        //        document.title = document.title + '  v3.0.8';
+        try {
+            p.vrsns = eval('(' + localStorage.vrsns + ')');
+        } catch (e) { }
+        p.vrsns = p.vrsns || {};
+
+        p.popHtml = $('#pop').outerHtml();
+
+        //        window.history.pushState({ title: 'title', url: window.location.href }, "title", window.location.href);
+        setTimeout(function () {
+            window.addEventListener("popstate", function () {
+                p.goback();
+                return false;
+                if (!p.isAlloyBack) {
+                    p.go('main');
+                    p.isAlloyBack = true;
+                }
+            }, false);
+        }, 1000);
+    },
+    popHtml: '',
+    taskCount: 0,
+    incTask: function () { taskCount++; },
+    decTask: function () { taskCount--; },
+    isAlloyBack: false,
+    isRedy: false,
+    prevPage: null,
+    nowPage: null,
+    go: function (page, params) {
+        if (!p.isRedy) { //等待loadpage 加载完毕
+            setTimeout(function () {
+                p.go(page, params);
+            }, 10);
+            return;
+        }
+
+        page = p.fmtPageName(page);
+
+        if (p.nowPage != page || p.params != params) {
+            window.history.pushState({ title: 'title', url: window.location.href }, "title", window.location.href);
+        }
+        this.nowPage = page;
+        this.params = params;
+
+        //跳转前代码 loading
+        p.goBefor();
+
+        //等待处理befor效果 
+        var g = function () {
+            if (p[page] == 'wait' || p[page] == undefined) {
+                p.load(page);
+            }
+
+            if (p[page] == "loading") {
+                setTimeout(g, 100);
+                return;
+            }
+
+            var rp = function (contents) {
+                if (contents == undefined)
+                    contents = 'undefined';
+
+                var opp = p.prevPage;
+                p.prevPage = {};
+                p.prevPage.dom = $('#__nb').clone();
+                p.prevPage.page_load = window.page_load;
+                p.prevPage.page_unload = window.page_unload;
+                p.prevPage.page_leave = window.page_leave;
+                p.prevPage.page_init = window.page_init;
+                p.prevPage.scrollTop = $(document).scrollTop();
+                p.prevPage.prevPage = opp;
+
+                if (window.page_leave) {
+                    window.page_leave(p.prevPage);
+                }
+
+                if (window.page_unload) {
+                    page_unload();
+                }
+
+                //跳转
+                delete window.page_unload;
+                delete window.page_load;
+                delete window.page_leave;
+                delete window.page_init;
+
+                var ld = new Date().getTime();
+                $('#__nb').attr('id', '__ob');
+           
+
+                    var ua = window.navigator.userAgent.toLowerCase();
+                    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                        $('body').prepend('<div id=__nb style="position: absolute; display:none; width:100%; min-height:100%; left;0px; top:0px;">' + contents + '</div>');//微信
+                    } else {
+                        $('body').prepend('<div id=__nb style="position: absolute; display:none; width:100%;max-width:800px; min-height:100%; marigin:0 auto; top:0px;">' + contents + '</div>');//非微信
+                    }
+
+
+                //$('body').prepend('<div id=__nb style="position: absolute; display:none; width:100%; min-height:100%; left;0px; top:0px;">' + contents + '</div>');
+
+                var showNew = function () {
+                    var snf = function () {
+                        if (p.taskCount > 0) {
+                            setTimeout(snf, 50);
+                            return;
+                        }
+
+                        $('#__ob').remove();
+                        $('#__nb').show();
+                        window.scrollTo(0, 0);
+                        p.goAfter();
+                    }
+
+                    setTimeout(snf, ld + 100 - new Date().getTime());
+                }
+
+                p["go_after_" + page] && p["go_after_" + page]();
+                if (window.page_load) {
+                    window.page_load(function () { });
+                    showNew();
+                }
+                else {
+                    showNew();
+                }
+            }
+
+            if (p["go_" + page]) {
+                p["go_" + page](p[page], params, rp);
+            }
+            else {
+                rp(p[page]);
+            }
+        };
+        g();
+    },
+
+    goback: function () {
+        if (!p.prevPage.prevPage) {
+            return;
+        }
+
+        p.goBefor();
+
+        setTimeout(function () {
+            p.goAfter();
+        }, 300);
+
+        $('#__nb').remove();
+        $('body').append(p.prevPage.dom);
+
+        window.page_load = p.prevPage.page_load;
+        window.page_unload = p.prevPage.page_unload;
+        window.page_init = p.prevPage.page_init;
+        window.page_leave = p.prevPage.page_leave;
+        $(document).scrollTop(p.prevPage.scrollTop);
+
+        if (window.page_init)
+            window.page_init(p.prevPage);
+
+        p.prevPage = p.prevPage.prevPage;
+    },
+
+    statusException: function (result)  //默认状态异常处理
+    {
+        if (result.Status == 3001) {
+            console.log('need login!');
+            p.go('login');
+            return false;
+        }
+
+        if (result.Status == 3) {
+            alert(result.Data);
+            return true;
+        }
+
+        alert('服务端返回(' + result.Status + ")\r\n[" + result.Data + "]");
+        return false;
+    },
+
+    load: function (page) {  //预处理 
+        page = p.fmtPageName(page);
+        if (!localStorage[page] || localStorage[page] == "null" || localStorage[page] == "undefined" || localStorage[page] == 'error') {
+            p[page] = "loading";
+            $.ajax({
+                url: page + p.page_extension + '?bd=bd',
+                async: true,
+                cache: false,
+                success: function (rt) {
+                    localStorage[page] = p[page] = rt;
+                },
+                error: function () {
+                    alert('页面' + page + '载入失败!');
+                    localStorage[page] = p[page] = 'error';
+                }
+            });
+        }
+        else {
+            p[page] = localStorage[page];
+        }
+    },
+
+    goBefor: function () {
+        if ($('#pop').length > 0) {
+            return;
+        }
+        $('body').append(p.popHtml);
+    },
+
+    goAfter: function () {
+        $('#pop').remove();
+    },
+
+    fmtPageName: function (page) {
+        return page;
+    },
+
+    loadPage: function (page, loadFunc, afterFunc) {
+        //加入页面载入队列
+        page = p.fmtPageName(page);
+
+        p[page] = 'wait';
+
+        p["go_" + page] = loadFunc;
+        p["go_after_" + page] = afterFunc;
+    },
+
+    cookie: function (key, val) {
+        //临时cookie获取方式
+        if (val == '') {   //delete
+            $.cookie(key, val, { domain: document.domain.match('[192]*\\..*'), path: '/', expires: -1 });
+        }
+        else if (val) {
+            //赋值
+            $.cookie(key, val, { domain: document.domain.match('[192]*\\..*'), path: '/', expires: 365 });
+        }
+        else {
+            //读取值
+            if ($.cookie(key)) {   //如果有值
+                return $.cookie(key);
+            }
+            else {
+                //如果没有值
+                return undefined;
+            }
+        }
+    },
+
+    pay:function(upp){         
+        //统一支付
+        var defupp = {
+            value: 1,
+            orderNo:'',
+            param: '', 
+            success: '',
+            fail: '',
+            callBack: function () {
+                layer.alert('统一支付成功! ',{icon:1}, function(){ window.location.href = '/Scores' });
+            },
+        };
+
+        upp = $.extend({},defupp,upp);
+
+        if(!upp.orderNo)
+        { 
+            var d = new Date();
+            var y = d.getYear().toString()[d.getYear().toString().length-1];
+            var m = d.getMonth() + 1;
+            m = m > 9 ? m : '0'+ m ;
+            var d = d.getDate();
+            d = d > 9 ? d : '0' + d;
+            var r = Math.random().toString().substr(2,8);
+            
+            upp.orderNo = "JF" + y + m + d + r; 
+        } 
+
+        if(!upp.success || !upp.fail) 
+            alert('回调地址不能为空!'); 
+        if(!upp.callBack) 
+            alert('回调函数不能为空!'); 
+
+        var isExitPay = false; 
+        function _endWxPay() {
+            isExitPay = true;
+            layer.closeAll();
+        }
+
+        function _testWxPay() {
+            if (isExitPay) {
+                return;
+            }
+            loadData('TestWxQrPay', { order_no: upp.orderNo }, function (rs) {
+                if (rs) {
+                    upp.callBack();
+                }
+                else {
+                    _testWxPay();
+                }
+            });
+        }
+
+        if (isWx) { 
+            window.location.href = 'http://i.bangke.com/html/p/WxPay.html??order_no='+ upp.orderNo 
+                +'&value='+upp.value
+                +'&param='+ upp.param 
+                +'&success=' + encodeURIComponent(upp.success)
+                +'&fail=' + encodeURIComponent(upp.fail);
+        }
+        else {
+            isExitPay = false;
+            layer.open({
+                content:'<img width="220px" height="220px" alt="Loading..." src="http://i.bangke.com/i/WxUnifyQrPay?order_no='+ upp.orderNo +'&value='+upp.value+'&param='+ upp.param +'" />'
+                + '<p id="wbt" style="text-align: center">使用微信"扫一扫"支付 <b><a>' + (upp.value / 100) + '</a></b> 元.</p>',
+                title: '微信支付', 
+                success: _testWxPay, 
+                end: _endWxPay
+            });
+        }
+    },
+
+    speed: 200,
+    utk: function (val) {
+        return p.cookie('utk', val);
+    },
+    openId: function (val) {
+        return p.cookie('openId', val);
+    },
+    vrsns: {},
+    params: null, //go参数
+    data: null     //数据参数
+};                                                                             //页面模板 P 结束
+
+function ajaxQuery(url, parms, callback) {
+    if (typeof (parms) == 'number') {
+        parms = parms.toString();
+    }
+
+    var isSync = callback ? false : true;
+
+    var pm = {
+        url: url,
+        data: parms,
+        type: "POST",
+        async: !isSync,
+        success: function (rt) {
+            callback(rt);
+        },
+        error: function (rt) {
+            if (rt.readyState == 0 && status == 0)
+                return;
+            if (confirm('系统忙,请刷新重试!')) {
+                reload();
+                return;
+            }
+            callback(undefined);
+        }
+    };
+
+    var rtq = $.ajax(pm);
+    if (isSync) {
+        return rtq.responseText;
+    }
+}
+
+
+function replaceAll(source, targer, repstr) {
+    var tmp;
+    while (source != (tmp = source.replace(targer, repstr))) {
+        source = tmp;
+    }
+    return source;
+}
+
+String.prototype.replaceAll = function (targer, repstr) { return replaceAll(this, targer, repstr); }
+
+var isWx = window.navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == 'micromessenger';
+
+//重新载入页面
+function reload(gotoTop) {
+    if (gotoTop) {
+        window.scrollTo(0, 0);
+    }
+    if (isWx) {
+        window.location.href = window.location.href + '?___wxd=' + new Date().getTime();
+    }
+    else
+        window.location.reload();
+}
+
+function callApi(key, param, callBack) {
+    param = param ? param : {};
+    param.utk = p.utk();
+    param._nts = Math.random().toString().substr(2);
+
+    if (callBack) {
+        ajaxQuery(p.service_address + key, param, function (rs) {
+            if (typeof (rs) == 'string')
+                rs = eval('(' + rs + ')');
+            callBack(rs);
+        });
+        return null;
+    }
+
+    var rt = ajaxQuery(p.service_address + key, param);
+    return eval('(' + rt + ')');
+}
+
+var loadDataKeyTimespan = {};
+
+function loadData(key, param, callBack) {  //CallApi
+    var ldtk = key + JSON.stringify(param);
+    var nd = new Date().getTime();
+    if (loadDataKeyTimespan[ldtk] && (nd - loadDataKeyTimespan[ldtk] < 2000))  //3秒延时
+    {
+        throw "Request often!";
+    }
+
+    p.taskCount++;
+    loadDataKeyTimespan[ldtk] = nd;
+
+    var pr = function (result, cb) {
+        //如果是token失效,则跳至登录页 
+        if (result.Status != 0) {
+            var ctnue = p.statusException(result);
+            if (!ctnue) {
+                return;
+            }
+        }
+        cb(result.Data);
+    };
+
+    if (!callBack) {
+        var rt = callApi(key, param);
+        p.taskCount--;
+        return pr(rt);
+    }
+    else {
+        callApi(key, param, function (result) {
+            delete loadDataKeyTimespan[ldtk];
+            pr(result, callBack);
+            p.taskCount--;
+        });
+        return null;
+    }
+}
+
+function fillData(content, obj) {
+    content = content.replaceAll(' _src=', ' src=');
+    for (var param in obj) {
+        content = content.replaceAll('[' + param + ']', obj[param]);
+    }
+    return content;
+}
