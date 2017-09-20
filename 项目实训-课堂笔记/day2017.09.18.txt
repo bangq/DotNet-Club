@@ -1,0 +1,11 @@
+1.github.com
+
+2.https://github.com/bangq/DotNet-Club
+
+3.git clone  项目下载地址 https://github.com/bangq/DotNet-Club.git
+
+4.远程 桌面连接 快捷键 win+R  输入 mstsc
+
+5.dns，域名解析
+
+6.本地host文件修改 C:\Windows\System32\drivers\etc
