@@ -1,0 +1,10 @@
+1.引用样式：
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+2.调用局部模板
+ @Html.Partial("_LoginPartial")
+
+3.填充区域
+@RenderBody()
+
