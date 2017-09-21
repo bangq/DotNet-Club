@@ -1,0 +1,4 @@
+1.路由命名空间设置 
+namespaces: new string[] { "Club.Controllers" }
+  new string[] { "Club.Areas.Admin.Controllers" }
+
