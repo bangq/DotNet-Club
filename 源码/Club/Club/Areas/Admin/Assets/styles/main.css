@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 /**goods_cart**/
 .btn-primary{ margin-right:15px;}
@@ -495,10 +495,10 @@ canvas{width:95%;height:400px;background:#fffdf7;}
 .col-sm-how{ float:left; position:relative; min-height:1px; padding-left:12px;}
 .fl_m2 { overflow:hidden;}
 .h162{ height:162px !important;}
-.a1{ background:url(../../img/a1.png) center no-repeat; height:18px;}
-.a2{ background:url(../../img/a2.png) center no-repeat; height:18px;}
-.a3{ background:url(../../img/a3.png) center no-repeat; height:18px;}
-.a4{ background:url(../../img/a4.png) center no-repeat; height:18px;}
-.a5{ background:url(../../img/a5.png) center no-repeat; height:18px;}
-.a6{ background:url(../../img/a6.png) center no-repeat; height:18px;}
-.a7{ background:url(../../img/a7.png) center no-repeat; height:18px;}
+.a1{ background:url(../img/a1.png) center no-repeat; height:18px;}
+.a2{ background:url(../img/a2.png) center no-repeat; height:18px;}
+.a3{ background:url(../img/a3.png) center no-repeat; height:18px;}
+.a4{ background:url(../img/a4.png) center no-repeat; height:18px;}
+.a5{ background:url(../img/a5.png) center no-repeat; height:18px;}
+.a6{ background:url(../img/a6.png) center no-repeat; height:18px;}
+.a7{ background:url(../img/a7.png) center no-repeat; height:18px;}
