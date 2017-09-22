@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -210,6 +211,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Areas\Admin\Assets\images\avatars\avatar.png" />
     <Content Include="Areas\Admin\Assets\images\avatars\avatar1.png" />
     <Content Include="Areas\Admin\Assets\images\avatars\avatar2.png" />
@@ -247,11 +250,27 @@
     <Content Include="Areas\Admin\Assets\images\sort_desc_disabled.png" />
     <Content Include="Areas\Admin\Assets\images\spritemap%402x.png" />
     <Content Include="Areas\Admin\Assets\images\spritemap.png" />
+    <Content Include="Areas\Admin\Assets\img\a1.png" />
+    <Content Include="Areas\Admin\Assets\img\a2.png" />
+    <Content Include="Areas\Admin\Assets\img\a3.png" />
+    <Content Include="Areas\Admin\Assets\img\a4.png" />
+    <Content Include="Areas\Admin\Assets\img\a5.png" />
+    <Content Include="Areas\Admin\Assets\img\a6.png" />
+    <Content Include="Areas\Admin\Assets\img\a7.png" />
+    <Content Include="Areas\Admin\Assets\img\checked.png" />
     <Content Include="Areas\Admin\Assets\img\clear.png" />
     <Content Include="Areas\Admin\Assets\img\glyphicons-halflings-white.png" />
     <Content Include="Areas\Admin\Assets\img\glyphicons-halflings.png" />
     <Content Include="Areas\Admin\Assets\img\loading.gif" />
+    <Content Include="Areas\Admin\Assets\img\loginl2.jpg" />
     <Content Include="Areas\Admin\Assets\img\logo-min.png" />
+    <Content Include="Areas\Admin\Assets\img\mobile.png" />
+    <Content Include="Areas\Admin\Assets\img\password.png" />
+    <Content Include="Areas\Admin\Assets\img\qq.jpg" />
+    <Content Include="Areas\Admin\Assets\img\shop_img.png" />
+    <Content Include="Areas\Admin\Assets\img\table.jpg" />
+    <Content Include="Areas\Admin\Assets\img\username.png" />
+    <Content Include="Areas\Admin\Assets\img\wxqr.png" />
     <Content Include="Areas\Admin\Assets\scripts\ace-elements.js" />
     <Content Include="Areas\Admin\Assets\scripts\ace-extra.js" />
     <Content Include="Areas\Admin\Assets\scripts\ace.js" />
@@ -474,6 +493,17 @@
     <Content Include="packages.config" />
     <Content Include="Areas\Admin\Assets\scripts\ace\readme" />
     <Content Include="Areas\Admin\Assets\scripts\ace\scripts.json" />
+    <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\Assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\Assets\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\Assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Assets\font\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
+    <Content Include="Areas\Admin\Assets\font\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
+    <Content Include="Areas\Admin\Assets\font\readme" />
+    <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <PropertyGroup>
