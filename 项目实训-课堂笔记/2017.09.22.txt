@@ -1,21 +1,9 @@
-ï»¿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-
-namespace Club.Controllers
-{
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
-              
-            //using (var db = new ClubEntities())
+1.EntityFramework µÄÔöÉ¾¸Ä²é
+2.µ¼º½ÊôÐÔ
+//using (var db = new ClubEntities())
             //{
             //    var level = new Level();
-            //    level.Name = "çº§åˆ«1";
+            //    level.Name = "¼¶±ð1";
 
             //    db.Level.Add(level);
             //    db.SaveChanges();
@@ -54,40 +42,21 @@ namespace Club.Controllers
             //    var user = db.User.FirstOrDefault(a => a.Id == 3);
             //    if (user != null)
             //    {
-            //        user.Name = "è½¯ä»¶153çš„ç”¨æˆ·";
+            //        user.Name = "Èí¼þ153µÄÓÃ»§";
             //    }
             //    db.SaveChanges();
             //}
 
-            //using (var db=new ClubEntities())
-            //{
+            using (var db=new ClubEntities())
+            {
 
-            //    var users = db.User.Where(t => t.Id < 10).ToList();
+                var users = db.User.Where(t => t.Id < 10).ToList();
 
-            //    var sb=new StringBuilder();
-            //    foreach (var item in users)
-            //    {
-            //        sb.AppendLine("ç”¨æˆ·åï¼š" + item.Name+"ç”¨æˆ·çº§åˆ«ï¼š"+item.Level.Name);
-            //    }
-            //    return Content(sb.ToString());
+                var sb=new StringBuilder();
+                foreach (var item in users)
+                {
+                    sb.AppendLine("ÓÃ»§Ãû£º" + item.Name+"ÓÃ»§¼¶±ð£º"+item.Level.Name);
+                }
+                return Content(sb.ToString());
 
-            //}
-  
-
-            return Content("ok");
-        }
-
-        public ActionResult About()
-        {
-           
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-    }
-}
+            }

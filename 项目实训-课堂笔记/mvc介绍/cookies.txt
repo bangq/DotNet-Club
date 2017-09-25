@@ -1,0 +1,61 @@
+MVC Cookie的使用
+
+1、创建Cookies有两种方法：
+
+Response.Cookies["userName"].Value = "patrick";
+Response.Cookies["userName"].Expires = DateTime.Now.AddDays(1);
+HttpCookie aCookie = new HttpCookie("lastVisit");
+aCookie.Value = DateTime.Now.ToString();
+aCookie.Expires = DateTime.Now.AddDays(1);
+Response.Cookies.Add(aCookie);
+2、读取Cookie
+
+
+if(Request.Cookies["userName"] != null)
+    Label1.Text = Server.HtmlEncode(Request.Cookies["userName"].Value);
+
+if(Request.Cookies["userName"] != null)
+{
+    HttpCookie aCookie = Request.Cookies["userName"];
+    Label1.Text = Server.HtmlEncode(aCookie.Value);
+}
+
+3、修改和删除Cookie
+
+
+int counter;
+if (Request.Cookies["counter"] == null)
+    counter = 0;
+else
+{
+    counter = int.Parse(Request.Cookies["counter"].Value);
+}
+counter++;
+
+Response.Cookies["counter"].Value = counter.ToString();
+Response.Cookies["counter"].Expires = DateTime.Now.AddDays(1);
+
+一定要注意设置Cookies是用Response读取是用Request两者不一样！
+
+删除Cookie
+
+
+string subkeyName;
+subkeyName = "userName";
+HttpCookie aCookie = Request.Cookies["userInfo"];
+aCookie.Values.Remove(subkeyName);
+aCookie.Expires = DateTime.Now.AddDays(1);
+Response.Cookies.Add(aCookie);
+
+ 
+
+HttpCookie aCookie;
+string cookieName;
+int limit = Request.Cookies.Count;
+for (int i=0; i<limit; i++)
+{
+    cookieName = Request.Cookies[i].Name;
+    aCookie = new HttpCookie(cookieName);
+    aCookie.Expires = DateTime.Now.AddDays(-1);
+    Response.Cookies.Add(aCookie);
+}
