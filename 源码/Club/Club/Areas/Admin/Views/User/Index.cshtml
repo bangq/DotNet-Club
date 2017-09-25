@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "用户列表";
+}
+
+@using Webdiyer.WebControls.Mvc
+@model IPagedList<User>
+@using Webdiyer.WebControls.Mvc;
+<div class="page-content">
+
+    <div class="page-header">
+        <h1>
+            订单
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                订货单
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <style>
+    </style>
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <div class="row mt15">
+                    <div class="col-xs-6">
+                        <div class="dataTables_length" id="sample-table-2_length">
+                            <button class="btn btn-sm btn-primary">添加</button><button class="btn btn-sm btn-primary">修改</button>
+                        </div>
+                    </div>
+
+                </div>
+                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="center">
+                                <label class="position-relative">
+                                    <input type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </th>
+                            <th>用户名</th>
+                            <th>账号</th>
+                            <th>级别</th>
+                            <th>积分</th>
+                            <th>管理员</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="center">
+                                        <label class="position-relative">
+                                            <input type="checkbox" class="ace" />
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+
+                                    <td>@item.Name</td>
+                                    <td>@item.Account</td>
+                                    <td class="hidden-480">@item.Level.Name</td>
+                                    <td>@item.integral</td>
+
+                                    <td>
+                                        @item.IsAdmin
+                                    </td>
+
+                                    <td>
+                                        <div class="hidden-sm hidden-xs action-buttons">
+                                            <a href="#">修改</a><a href="#">删除</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    @Html.Pager(Model, new PagerOptions()
+{
+    ContainerTagName = "ul", //分页标签
+    CssClass = "pagination", //分页样式
+    PagerItemTemplate = "<li class=\"paginate_button\">{0}</li>",
+    CurrentPagerItemTemplate = "<li class=\"paginate_button active\"><a href='#'>{0}</a></li>",
+    ShowFirstLast = false,//该值指定是否显示第一页和最后一页分页导航按钮。
+    NextPageText = "下一页",
+    PrevPageText = "上一页",
+    HorizontalAlign = "right",//获取或设置分页控件水平对齐方式。
+    ShowMorePagerItems = true,//指定是否显示更多页按钮
+    ShowNumericPagerItems = true //指定是否显示数字页索引按钮及更多页按钮。
+})
+    
+
+
+
+
+</div>

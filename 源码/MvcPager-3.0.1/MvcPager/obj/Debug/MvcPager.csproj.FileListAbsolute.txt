@@ -1,0 +1,14 @@
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\bin\Debug\Webdiyer.MvcPager.xml
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\bin\Debug\Webdiyer.MvcPager.dll
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\bin\Debug\Webdiyer.MvcPager.pdb
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\bin\Debug\zh-CHT\Webdiyer.MvcPager.resources.dll
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\bin\Debug\zh-CHS\Webdiyer.MvcPager.resources.dll
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\MvcPager.csprojResolveAssemblyReference.cache
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\Webdiyer.WebControls.Mvc.MvcPagerResources.resources
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\Webdiyer.WebControls.Mvc.MvcPagerResources.zh-CHT.resources
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\Webdiyer.WebControls.Mvc.MvcPagerResources.zh-CHS.resources
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\MvcPager.csproj.GenerateResource.Cache
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\zh-CHT\Webdiyer.MvcPager.resources.dll
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\zh-CHS\Webdiyer.MvcPager.resources.dll
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\Webdiyer.MvcPager.dll
+D:\Work\GitProjects\DotNet-Club\源码\MvcPager-3.0.1\MvcPager\obj\Debug\Webdiyer.MvcPager.pdb

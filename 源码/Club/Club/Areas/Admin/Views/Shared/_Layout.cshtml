@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Dashboard - Ace Admin</title>
+    <title>论坛-后台管理</title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -407,7 +407,7 @@
                 <li class="">
                     <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a2"></i> <span class="menu-text"> 用户管理 </span> <b class="arrow fa fa-angle-down"></b></a> <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户列表 </a> <b class="arrow"></b></li>
+                        <li class=""> <a href="/admin/user"> <i class="menu-icon fa fa-caret-right"></i> 用户列表 </a> <b class="arrow"></b></li>
                         <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户级别 </a> <b class="arrow"></b></li>
                         <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户收藏列表 </a> <b class="arrow"></b></li>
                         <li class=""> <a href="#"> <i class="menu-icon fa fa-caret-right"></i> 用户点赞列表 </a> <b class="arrow"></b></li>
@@ -544,20 +544,7 @@
     <script>
 
 		jQuery(function($) {
-				var oTable1 =
-				$('#sample-table-2')
-				.dataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,
-					  { "bSortable": false }
-					],
-					"aaSorting": [],
-
-			    } );
-
-
+			 
 		 	$(document).on('click', 'th input:checkbox' , function(){
 					var that = this;
 					$(this).closest('table').find('tr > td:first-child input:checkbox')
