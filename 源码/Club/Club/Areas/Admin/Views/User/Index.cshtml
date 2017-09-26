@@ -25,8 +25,9 @@
                 <div class="row mt15">
                     <div class="col-xs-6">
                         <div class="dataTables_length" id="sample-table-2_length">
-                            <button class="btn btn-sm btn-primary">添加</button><button class="btn btn-sm btn-primary">修改</button>
+                            <button class="btn btn-sm btn-primary" onclick="add()">添加</button><button class="btn btn-sm btn-primary">修改</button>
                         </div>
+
                     </div>
 
                 </div>
@@ -71,7 +72,7 @@
 
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a href="#">修改</a><a href="#">删除</a>
+                                            <a href="">修改</a><a href="/admin/user/delete?Id=@item.Id">删除</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -92,16 +93,18 @@
     CssClass = "pagination", //分页样式
     PagerItemTemplate = "<li class=\"paginate_button\">{0}</li>",
     CurrentPagerItemTemplate = "<li class=\"paginate_button active\"><a href='#'>{0}</a></li>",
-    ShowFirstLast = false,//该值指定是否显示第一页和最后一页分页导航按钮。
+    ShowFirstLast = false, //该值指定是否显示第一页和最后一页分页导航按钮。
     NextPageText = "下一页",
     PrevPageText = "上一页",
-    HorizontalAlign = "right",//获取或设置分页控件水平对齐方式。
-    ShowMorePagerItems = true,//指定是否显示更多页按钮
+    HorizontalAlign = "right", //获取或设置分页控件水平对齐方式。
+    ShowMorePagerItems = true, //指定是否显示更多页按钮
     ShowNumericPagerItems = true //指定是否显示数字页索引按钮及更多页按钮。
 })
-    
+
 
 
 
 
 </div>
+
+

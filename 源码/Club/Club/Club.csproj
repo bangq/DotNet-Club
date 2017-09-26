@@ -195,6 +195,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\ExtendMethod.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -356,6 +357,7 @@
     <Content Include="Areas\Admin\Assets\scripts\date-time\bootstrap-timepicker.js" />
     <Content Include="Areas\Admin\Assets\scripts\date-time\daterangepicker.js" />
     <Content Include="Areas\Admin\Assets\scripts\date-time\moment.js" />
+    <Content Include="Areas\Admin\Assets\scripts\dialog.js" />
     <Content Include="Areas\Admin\Assets\scripts\dropzone.js" />
     <Content Include="Areas\Admin\Assets\scripts\excanvas.js" />
     <Content Include="Areas\Admin\Assets\scripts\flot\jquery.flot.js" />

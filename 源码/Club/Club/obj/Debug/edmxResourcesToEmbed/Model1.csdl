@@ -1,12 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ClubEntites" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ClubEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="ClubEntites.Category" />
+    <EntitySet Name="Collection" EntityType="ClubEntites.Collection" />
+    <EntitySet Name="Level" EntityType="ClubEntites.Level" />
+    <EntitySet Name="Post" EntityType="ClubEntites.Post" />
+    <EntitySet Name="PraiseRecord" EntityType="ClubEntites.PraiseRecord" />
+    <EntitySet Name="sysdiagrams" EntityType="ClubEntites.sysdiagrams" />
+    <EntitySet Name="User" EntityType="ClubEntites.User" />
+    <AssociationSet Name="FK_Post_Category" Association="ClubEntites.FK_Post_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Collection_Post" Association="ClubEntites.FK_Collection_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Collection" EntitySet="Collection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Collection_User" Association="ClubEntites.FK_Collection_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Collection" EntitySet="Collection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Level" Association="ClubEntites.FK_User_Level">
+      <End Role="Level" EntitySet="Level" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_User" Association="ClubEntites.FK_Post_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PraiseRecord_Post" Association="ClubEntites.FK_PraiseRecord_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PraiseRecord" EntitySet="PraiseRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PraiseRecord_User" Association="ClubEntites.FK_PraiseRecord_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="PraiseRecord" EntitySet="PraiseRecord" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Post" Relationship="Self.FK_Post_Category" FromRole="Category" ToRole="Post" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Post" Relationship="ClubEntites.FK_Post_Category" FromRole="Category" ToRole="Post" />
   </EntityType>
   <EntityType Name="Collection">
     <Key>
@@ -16,16 +53,16 @@
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="PostId" Type="Int32" Nullable="false" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Post" Relationship="Self.FK_Collection_Post" FromRole="Collection" ToRole="Post" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Collection_User" FromRole="Collection" ToRole="User" />
+    <NavigationProperty Name="Post" Relationship="ClubEntites.FK_Collection_Post" FromRole="Collection" ToRole="Post" />
+    <NavigationProperty Name="User" Relationship="ClubEntites.FK_Collection_User" FromRole="Collection" ToRole="User" />
   </EntityType>
   <EntityType Name="Level">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="Self.FK_User_Level" FromRole="Level" ToRole="User" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="ClubEntites.FK_User_Level" FromRole="Level" ToRole="User" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
@@ -36,17 +73,17 @@
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="SysInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ViewCount" Type="Int32" Nullable="false" />
     <Property Name="ParentId" Type="Int32" Nullable="false" />
     <Property Name="CategoryId" Type="Int32" Nullable="false" />
     <Property Name="IsFeatured" Type="Boolean" Nullable="false" />
     <Property Name="Status" Type="Int32" Nullable="false" />
     <Property Name="IsAbort" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Category" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
-    <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Post" FromRole="Post" ToRole="Collection" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Post_User" FromRole="Post" ToRole="User" />
-    <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_Post" FromRole="Post" ToRole="PraiseRecord" />
+    <NavigationProperty Name="Category" Relationship="ClubEntites.FK_Post_Category" FromRole="Post" ToRole="Category" />
+    <NavigationProperty Name="Collection" Relationship="ClubEntites.FK_Collection_Post" FromRole="Post" ToRole="Collection" />
+    <NavigationProperty Name="User" Relationship="ClubEntites.FK_Post_User" FromRole="Post" ToRole="User" />
+    <NavigationProperty Name="PraiseRecord" Relationship="ClubEntites.FK_PraiseRecord_Post" FromRole="Post" ToRole="PraiseRecord" />
   </EntityType>
   <EntityType Name="PraiseRecord">
     <Key>
@@ -56,14 +93,14 @@
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="PostId" Type="Int32" Nullable="false" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Post" Relationship="Self.FK_PraiseRecord_Post" FromRole="PraiseRecord" ToRole="Post" />
-    <NavigationProperty Name="User" Relationship="Self.FK_PraiseRecord_User" FromRole="PraiseRecord" ToRole="User" />
+    <NavigationProperty Name="Post" Relationship="ClubEntites.FK_PraiseRecord_Post" FromRole="PraiseRecord" ToRole="Post" />
+    <NavigationProperty Name="User" Relationship="ClubEntites.FK_PraiseRecord_User" FromRole="PraiseRecord" ToRole="User" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="principal_id" Type="Int32" Nullable="false" />
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
@@ -74,21 +111,22 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PassWord" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="LevelId" Type="Int32" Nullable="false" />
     <Property Name="integral" Type="Int32" Nullable="false" />
     <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_User" FromRole="User" ToRole="Collection" />
-    <NavigationProperty Name="Level" Relationship="Self.FK_User_Level" FromRole="User" ToRole="Level" />
-    <NavigationProperty Name="Post" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
-    <NavigationProperty Name="PraiseRecord" Relationship="Self.FK_PraiseRecord_User" FromRole="User" ToRole="PraiseRecord" />
+    <Property Name="IsAbort" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Collection" Relationship="ClubEntites.FK_Collection_User" FromRole="User" ToRole="Collection" />
+    <NavigationProperty Name="Level" Relationship="ClubEntites.FK_User_Level" FromRole="User" ToRole="Level" />
+    <NavigationProperty Name="Post" Relationship="ClubEntites.FK_Post_User" FromRole="User" ToRole="Post" />
+    <NavigationProperty Name="PraiseRecord" Relationship="ClubEntites.FK_PraiseRecord_User" FromRole="User" ToRole="PraiseRecord" />
   </EntityType>
   <Association Name="FK_Post_Category">
-    <End Role="Category" Type="Self.Category" Multiplicity="1" />
-    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <End Type="ClubEntites.Category" Role="Category" Multiplicity="1" />
+    <End Type="ClubEntites.Post" Role="Post" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Category">
         <PropertyRef Name="Id" />
@@ -99,8 +137,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Collection_Post">
-    <End Role="Post" Type="Self.Post" Multiplicity="1" />
-    <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+    <End Type="ClubEntites.Post" Role="Post" Multiplicity="1" />
+    <End Type="ClubEntites.Collection" Role="Collection" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="Id" />
@@ -111,8 +149,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Collection_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+    <End Type="ClubEntites.User" Role="User" Multiplicity="1" />
+    <End Type="ClubEntites.Collection" Role="Collection" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -123,8 +161,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_User_Level">
-    <End Role="Level" Type="Self.Level" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <End Type="ClubEntites.Level" Role="Level" Multiplicity="1" />
+    <End Type="ClubEntites.User" Role="User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Level">
         <PropertyRef Name="Id" />
@@ -135,8 +173,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Post_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <End Type="ClubEntites.User" Role="User" Multiplicity="1" />
+    <End Type="ClubEntites.Post" Role="Post" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -147,8 +185,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PraiseRecord_Post">
-    <End Role="Post" Type="Self.Post" Multiplicity="1" />
-    <End Role="PraiseRecord" Type="Self.PraiseRecord" Multiplicity="*" />
+    <End Type="ClubEntites.Post" Role="Post" Multiplicity="1" />
+    <End Type="ClubEntites.PraiseRecord" Role="PraiseRecord" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="Id" />
@@ -159,8 +197,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PraiseRecord_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="PraiseRecord" Type="Self.PraiseRecord" Multiplicity="*" />
+    <End Type="ClubEntites.User" Role="User" Multiplicity="1" />
+    <End Type="ClubEntites.PraiseRecord" Role="PraiseRecord" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -170,41 +208,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ClubEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Category" EntityType="Self.Category" />
-    <EntitySet Name="Collection" EntityType="Self.Collection" />
-    <EntitySet Name="Level" EntityType="Self.Level" />
-    <EntitySet Name="Post" EntityType="Self.Post" />
-    <EntitySet Name="PraiseRecord" EntityType="Self.PraiseRecord" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-    <EntitySet Name="User" EntityType="Self.User" />
-    <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
-      <End Role="Category" EntitySet="Category" />
-      <End Role="Post" EntitySet="Post" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Collection_Post" Association="Self.FK_Collection_Post">
-      <End Role="Post" EntitySet="Post" />
-      <End Role="Collection" EntitySet="Collection" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Collection_User" Association="Self.FK_Collection_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Collection" EntitySet="Collection" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_Level" Association="Self.FK_User_Level">
-      <End Role="Level" EntitySet="Level" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Post" EntitySet="Post" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PraiseRecord_Post" Association="Self.FK_PraiseRecord_Post">
-      <End Role="Post" EntitySet="Post" />
-      <End Role="PraiseRecord" EntitySet="PraiseRecord" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PraiseRecord_User" Association="Self.FK_PraiseRecord_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="PraiseRecord" EntitySet="PraiseRecord" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

@@ -516,6 +516,7 @@
     <script src="/Areas/Admin/Assets/scripts/flot/jquery.flot.resize.js"></script>
     <script src="/Areas/Admin/Assets/scripts/jquery.dataTables.js"></script>
     <script src="/Areas/Admin/Assets/scripts/jquery.dataTables.bootstrap.js"></script>
+    <script src="/Areas/Admin/Assets/scripts/dialog.js"></script>
 
     <!-- ace scripts -->
     <script src="/Areas/Admin/Assets/scripts/ace/elements.scroller.js"></script>
@@ -580,7 +581,21 @@
     <script src="/Areas/Admin/Assets/scripts/ace/elements.onpage-help.js"></script>
     <script src="/Areas/Admin/Assets/scripts/ace/ace.onpage-help.js"></script>
 
+    <script type="text/javascript">
 
+    $(document).ready(function () {
+        if ('@TempData["Msg"]' != '') {
+            var d = dialog({
+                title: '提示',
+                width: '20em',
+                content: '@TempData["Msg"]'
+            });
+            d.show();
+        }
+      
+    });
+     
+    </script>
 </body>
 </html>
 

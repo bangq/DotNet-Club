@@ -1,0 +1,14 @@
+1.get传值，以及controller里面取值的方法
+2.ef 数据库删除，已经逻辑删除的实现方式
+            var id = int.Parse(idStr);
+
+            using (var db=new ClubEntities())
+            {
+                var user = db.User.FirstOrDefault(a => a.Id == id);
+                if (user != null)
+                {
+                    user.IsAbort = true;
+                    //db.User.Remove(user);
+                    db.SaveChanges();
+                }
+            }
