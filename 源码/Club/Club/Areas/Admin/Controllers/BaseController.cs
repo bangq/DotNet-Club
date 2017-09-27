@@ -6,15 +6,17 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
-    public class PostController : BaseController
+    public class BaseController : Controller
     {
+
         /// <summary>
-        /// 帖子列表
+        /// 消息提示
         /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
+        /// <param name="message"></param>
+        public void ShowMassage(string message)
         {
-            return View();
+            TempData["Msg"] = message;
         }
+
     }
 }

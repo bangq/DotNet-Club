@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Web;
@@ -11,7 +12,7 @@ using Club;
 
 namespace Club.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         // GET: Admin/User
         public ActionResult Index()
@@ -26,10 +27,10 @@ namespace Club.Areas.Admin.Controllers
             var pageIndex = int.Parse(indexStr);
 
 
-            var list=new List<User>();
-            using (var db=new ClubEntities())
+            var list = new List<User>();
+            using (var db = new ClubEntities())
             {
-                 list = db.User.Where(a=>a.IsAbort==false).OrderByDescending(a=>a.Id).Include(a=>a.Level).ToPagedList(pageIndex:pageIndex,pageSize:pageSize);
+                list = db.User.Where(a => a.IsAbort == false).OrderByDescending(a => a.Id).Include(a => a.Level).ToPagedList(pageIndex: pageIndex, pageSize: pageSize);
             }
 
             return View(list);
@@ -45,8 +46,8 @@ namespace Club.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
-             
-            using (var db=new ClubEntities())
+
+            using (var db = new ClubEntities())
             {
                 var user = db.User.FirstOrDefault(a => a.Id == id);
                 if (user != null)
@@ -62,8 +63,105 @@ namespace Club.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            var Id = Request["Id"].ToInt();
+
+            using (var db = new ClubEntities())
+            {
+                var user = db.User.Include(a => a.Level).FirstOrDefault(a => a.Id == Id);
+
+
+                var selectItems = new List<SelectListItem>();
+
+                var levels = db.Level.ToList();
+
+                foreach (var level in levels)
+                {
+                    var selectItem = new SelectListItem();
+                    selectItem.Text = level.Name;
+                    selectItem.Value = level.Id.ToString();
+                    if (user != null && (user.LevelId == level.Id))
+                    {
+                        selectItem.Selected = true;
+                    }
+                    selectItems.Add(selectItem);
+                }
+
+                ViewBag.SeletItems = selectItems;
+
+                if (user == null)
+                    user = new User();
+                return View(user);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult Save()
+        {
+            var id = Request["id"].ToInt();
+            var name = Request["name"];
+            var account = Request["account"];
+            var levelId = Request["levelId"].ToInt();
+            var integral = Request["integral"].ToInt();
+            var image = Request["image"];
+
+
+            using (var db = new ClubEntities())
+            {
+                var user = db.User.FirstOrDefault(a => a.Id == id);
+
+                if (user == null)
+                {
+                    user = new User();
+                    user.Account = account;
+                    user.IsAdmin = false;
+                    user.PassWord = "000000";
+                    db.User.Add(user);
+                }
+
+                user.Name = name;
+                user.LevelId = levelId;
+                user.integral = integral;
+                user.Image = image;
+                db.SaveChanges();
+
+                ShowMassage("操作成功");
+            }
+
+
+            //if (id == 0)
+            //{
+            //    using (var db = new ClubEntities())
+            //    {
+            //        var user = new User();
+            //        user.Name = name;
+            //        user.Account = account;
+            //        user.LevelId = levelId;
+            //        user.integral = integral;
+            //        user.Image = image;
+            //        user.IsAdmin = false;
+            //        user.PassWord = "000000";
+
+            //        db.User.Add(user);
+
+            //        db.SaveChanges();
+
+            //        ShowMassage("新增成功");
+            //    }
+            //}
+
+
+
+
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 
-   
+
 }
