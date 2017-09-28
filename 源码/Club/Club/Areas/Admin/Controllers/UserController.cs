@@ -19,6 +19,7 @@ namespace Club.Areas.Admin.Controllers
         {
             int pageSize = 10;
             var indexStr = Request["pageIndex"];
+            var kw = Request["kw"];
             if (string.IsNullOrEmpty(indexStr))
             {
                 indexStr = "1";
@@ -26,14 +27,22 @@ namespace Club.Areas.Admin.Controllers
 
             var pageIndex = int.Parse(indexStr);
 
-
-            var list = new List<User>();
+            IPagedList<User> items ;
+            
             using (var db = new ClubEntities())
             {
-                list = db.User.Where(a => a.IsAbort == false).OrderByDescending(a => a.Id).Include(a => a.Level).ToPagedList(pageIndex: pageIndex, pageSize: pageSize);
+                var list = db.User.Where(a => a.IsAbort == false).Include(a => a.Level);
+
+                if (!string.IsNullOrEmpty(kw))
+                {
+                    list = list.Where(a => a.Account.Contains(kw) || a.Name.Contains(kw));
+                    ViewBag.KW = kw;
+                }
+
+                items = list.OrderByDescending(a => a.Id).ToPagedList(pageIndex: pageIndex, pageSize: pageSize);
             }
 
-            return View(list);
+            return View(items);
         }
 
         public ActionResult Delete()
