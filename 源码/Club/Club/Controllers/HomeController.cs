@@ -85,7 +85,6 @@ namespace Club.Controllers
                 db.SaveChanges();
             }
 
-
            // var pw = EncryptHelper.MD5Encoding("000000","yongjiasoft");
   
 
