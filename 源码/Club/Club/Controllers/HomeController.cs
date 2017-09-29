@@ -10,6 +10,7 @@ namespace Club.Controllers
 {
     public class HomeController : Controller
     {
+        [AuthFilter]
         public ActionResult Index()
         {
 
