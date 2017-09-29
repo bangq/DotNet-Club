@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Club;
 
 namespace Club.Controllers
 {
@@ -11,7 +12,7 @@ namespace Club.Controllers
     {
         public ActionResult Index()
         {
-              
+
             //using (var db = new ClubEntities())
             //{
             //    var level = new Level();
@@ -34,7 +35,7 @@ namespace Club.Controllers
             //        db.User.Add(user);
             //        db.SaveChanges();
             //    }
-                
+
             //}
 
             //using (var db= new ClubEntities())
@@ -45,7 +46,7 @@ namespace Club.Controllers
             //        db.User.Remove(user);
             //        db.SaveChanges();
             //    }
-                
+
             //}
 
             //using (var db=new ClubEntities())
@@ -72,6 +73,20 @@ namespace Club.Controllers
             //    return Content(sb.ToString());
 
             //}
+
+            using (var db=new ClubEntities())
+            {
+                var users = db.User.ToList();
+                foreach (var user in users)
+                {
+                    //var pw = EncryptHelper.MD5Encoding(user.PassWord, user.Account);
+                    user.PassWord = user.PassWord.MD5Encoding(user.Account);
+                }
+                db.SaveChanges();
+            }
+
+
+           // var pw = EncryptHelper.MD5Encoding("000000","yongjiasoft");
   
 
             return Content("ok");
