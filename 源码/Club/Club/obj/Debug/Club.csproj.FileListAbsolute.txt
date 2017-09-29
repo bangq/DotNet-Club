@@ -101,3 +101,4 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.pdb
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.pdb
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.xml
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache

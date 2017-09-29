@@ -17,6 +17,7 @@ namespace Club.Areas.Admin.Controllers
         // GET: Admin/User
         public ActionResult Index()
         {
+             
             int pageSize = 10;
             var indexStr = Request["pageIndex"];
             var kw = Request["kw"];
@@ -47,6 +48,7 @@ namespace Club.Areas.Admin.Controllers
 
         public ActionResult Delete()
         {
+             
             var idStr = Request["Id"];
             var id = idStr.ToInt();
             if (id == 0)
@@ -75,6 +77,7 @@ namespace Club.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
+            
             var Id = Request["Id"].ToInt();
 
             using (var db = new ClubEntities())
@@ -106,10 +109,11 @@ namespace Club.Areas.Admin.Controllers
             }
 
         }
-
+       
         [HttpPost]
         public ActionResult Save()
         {
+            
             var id = Request["id"].ToInt();
             var name = Request["name"];
             var account = Request["account"];

@@ -11,6 +11,12 @@ namespace Club.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            var user = (User)Session["loginUser"];
+            if (user == null)
+            {
+                return Redirect("/admin/login");
+            }
+
             return View();
         }
     }

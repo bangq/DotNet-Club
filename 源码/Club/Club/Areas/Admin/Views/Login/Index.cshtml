@@ -62,23 +62,23 @@
                                     <div class="widget-main">
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
-                                            请输入信息
+                                            用户登陆
                                         </h4>
 
                                         <div class="space-6"></div>
 
-                                        <form>
+                                        <form action="/admin/login/Login" method="post">
                                             <fieldset>
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="text" class="form-control" placeholder="用户名" />
+                                                        <input type="text" class="form-control" placeholder="用户名" name="account"/>
                                                         <i class="ace-icon fa fa-user"></i>
                                                     </span>
                                                 </label>
 
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="密码" />
+                                                        <input type="password" class="form-control" placeholder="密码" name="password"/>
                                                         <i class="ace-icon fa fa-lock"></i>
                                                     </span>
                                                 </label>
@@ -91,7 +91,7 @@
                                                         <span class="lbl"> 记住密码</span>
                                                     </label>
 
-                                                    <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
                                                         <i class="ace-icon fa fa-key"></i>
                                                         <span class="bigger-110">登录</span>
                                                     </button>
@@ -262,45 +262,59 @@
     <script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='/Areas/Admin/Assets/scripts/jquery.mobile.custom.js'>"+"<"+"/script>");
     </script>
-
+    <script src="/Areas/Admin/Assets/scripts/dialog.js"></script>
     <!-- inline scripts related to this page -->
+        <script type="text/javascript">
+            jQuery(function($) {
+                $(document).on('click', '.toolbar a[data-target]', function(e) {
+                    e.preventDefault();
+                    var target = $(this).data('target');
+                    $('.widget-box.visible').removeClass('visible'); //hide others
+                    $(target).addClass('visible'); //show target
+                });
+            });
+
+
+            //you don't need this, just used for changing background
+            jQuery(function($) {
+                $('#btn-login-dark').on('click', function(e) {
+                    $('body').attr('class', 'login-layout');
+                    $('#id-text2').attr('class', 'white');
+                    $('#id-company-text').attr('class', 'blue');
+
+                    e.preventDefault();
+                });
+                $('#btn-login-light').on('click', function(e) {
+                    $('body').attr('class', 'login-layout light-login');
+                    $('#id-text2').attr('class', 'grey');
+                    $('#id-company-text').attr('class', 'blue');
+
+                    e.preventDefault();
+                });
+                $('#btn-login-blur').on('click', function(e) {
+                    $('body').attr('class', 'login-layout blur-login');
+                    $('#id-text2').attr('class', 'white');
+                    $('#id-company-text').attr('class', 'light-blue');
+
+                    e.preventDefault();
+                });
+
+            });
+        </script>
     <script type="text/javascript">
-			jQuery(function($) {
-			 $(document).on('click', '.toolbar a[data-target]', function(e) {
-				e.preventDefault();
-				var target = $(this).data('target');
-				$('.widget-box.visible').removeClass('visible');//hide others
-				$(target).addClass('visible');//show target
-			 });
-			});
 
+    $(document).ready(function () {
+        if ('@TempData["Msg"]' != '') {
+            var d = dialog({
+                title: '提示',
+                width: '20em',
+                content: '@TempData["Msg"]'
+            });
+            d.show();
+        }
 
+    });
 
-			//you don't need this, just used for changing background
-			jQuery(function($) {
-			 $('#btn-login-dark').on('click', function(e) {
-				$('body').attr('class', 'login-layout');
-				$('#id-text2').attr('class', 'white');
-				$('#id-company-text').attr('class', 'blue');
-
-				e.preventDefault();
-			 });
-			 $('#btn-login-light').on('click', function(e) {
-				$('body').attr('class', 'login-layout light-login');
-				$('#id-text2').attr('class', 'grey');
-				$('#id-company-text').attr('class', 'blue');
-
-				e.preventDefault();
-			 });
-			 $('#btn-login-blur').on('click', function(e) {
-				$('body').attr('class', 'login-layout blur-login');
-				$('#id-text2').attr('class', 'white');
-				$('#id-company-text').attr('class', 'light-blue');
-
-				e.preventDefault();
-			 });
-
-			});
     </script>
 </body>
 </html>
