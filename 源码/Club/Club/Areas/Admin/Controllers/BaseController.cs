@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
+    [AuthFilter(IsNeedLogin = true)]
     public class BaseController : Controller
     {
 

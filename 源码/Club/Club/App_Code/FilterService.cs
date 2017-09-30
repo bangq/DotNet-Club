@@ -6,37 +6,59 @@ using System.Web.Mvc;
 
 namespace Club
 {
-  
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-        public class AuthFilter :ActionFilterAttribute
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+    public class AuthFilter : ActionFilterAttribute
+    {
+
+        public bool IsNeedLogin { get; set; } = false;
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            public string Name
-            {
-                get; set;
-            }
-            public override void OnActionExecuting(ActionExecutingContext filterContext)
+
+            if (!IsNeedLogin)
             {
                 base.OnActionExecuting(filterContext);
-                filterContext.HttpContext.Response.Write("我是执行前打出来的" + Name);
+                return;
             }
 
-            public override void OnActionExecuted(ActionExecutedContext filterContext)
+            var loginUser = (User)filterContext.HttpContext.Session["loginUser"];
+
+            if (loginUser != null)
             {
-                base.OnActionExecuted(filterContext);
-                //filterContext.HttpContext.Response.Write("我是执行后打出来的" + Name);
+                base.OnActionExecuting(filterContext);
+                return;
             }
 
-            public override void OnResultExecuting(ResultExecutingContext filterContext)
-            {
-                base.OnResultExecuting(filterContext);
-                //filterContext.HttpContext.Response.Write("我是在结果执行前打出来的" + Name);
-            }
+            filterContext.Result=new RedirectResult("/admin/login");
+            return;
 
-            public override void OnResultExecuted(ResultExecutedContext filterContext)
-            {
-                base.OnResultExecuted(filterContext);
-               // filterContext.HttpContext.Response.Write("我是结果执行后打出来的" + Name);
-            }
         }
+
+
+
+        //var loginUser = filterContext.HttpContext.Session["loginUser"];
+
+        //filterContext.HttpContext.Response.Write("我是执行前打出来的" + Name);
+        //    }
+
+    public override void OnActionExecuted(ActionExecutedContext filterContext)
+    {
+        base.OnActionExecuted(filterContext);
+        //filterContext.HttpContext.Response.Write("我是执行后打出来的" + Name);
+    }
+
+    public override void OnResultExecuting(ResultExecutingContext filterContext)
+    {
+        base.OnResultExecuting(filterContext);
+        //filterContext.HttpContext.Response.Write("我是在结果执行前打出来的" + Name);
+    }
+
+    public override void OnResultExecuted(ResultExecutedContext filterContext)
+    {
+        base.OnResultExecuted(filterContext);
+        // filterContext.HttpContext.Response.Write("我是结果执行后打出来的" + Name);
+    }
+}
     
 }

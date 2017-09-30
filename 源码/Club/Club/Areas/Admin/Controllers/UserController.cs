@@ -14,7 +14,6 @@ namespace Club.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
-        
         public ActionResult Index()
         {
              
@@ -109,7 +108,7 @@ namespace Club.Areas.Admin.Controllers
             }
 
         }
-       
+
         [HttpPost]
         public ActionResult Save()
         {

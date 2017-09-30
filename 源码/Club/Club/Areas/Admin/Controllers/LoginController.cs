@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Club.Areas.Admin.Controllers
 {
+    [AuthFilter(IsNeedLogin = false)]
     public class LoginController : BaseController
     {
         // GET: Admin/Login
@@ -14,7 +15,7 @@ namespace Club.Areas.Admin.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult Login()
         {

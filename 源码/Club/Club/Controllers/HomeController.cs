@@ -81,7 +81,7 @@ namespace Club.Controllers
                 foreach (var user in users)
                 {
                     //var pw = EncryptHelper.MD5Encoding(user.PassWord, user.Account);
-                    user.PassWord = user.PassWord.MD5Encoding(user.Account);
+                    user.PassWord = "000000".MD5Encoding(user.Account);
                 }
                 db.SaveChanges();
             }
