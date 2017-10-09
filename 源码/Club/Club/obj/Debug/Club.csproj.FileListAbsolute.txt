@@ -38,7 +38,8 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.Owin.Security.Mic
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.Owin.Security.OAuth.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.Owin.Security.Twitter.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.Web.Infrastructure.dll
-D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Newtonsoft.Json.dll
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\MiniProfiler.dll
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\MiniProfiler.EntityFramework6.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Owin.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Helpers.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Mvc.dll
@@ -47,6 +48,7 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Razor.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.WebPages.Deployment.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.WebPages.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.WebPages.Razor.dll
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\WebGrease.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.AI.DependencyCollector.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -54,6 +56,10 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.AI.Web.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.AI.WindowsServer.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.ApplicationInsights.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\MiniProfiler.pdb
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\MiniProfiler.xml
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\MiniProfiler.EntityFramework6.pdb
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\MiniProfiler.EntityFramework6.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Helpers.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Mvc.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Optimization.xml
@@ -61,8 +67,9 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.Razor.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.WebPages.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.WebPages.Deployment.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\System.Web.WebPages.Razor.xml
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.pdb
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Antlr3.Runtime.pdb
-D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Newtonsoft.Json.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\EntityFramework.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\EntityFramework.SqlServer.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Microsoft.AspNet.Identity.Core.xml
@@ -98,7 +105,4 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\zh-Hans\Microsoft.Owin.Secu
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.pdb
-D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.dll
-D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.pdb
-D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\Webdiyer.MvcPager.xml
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache

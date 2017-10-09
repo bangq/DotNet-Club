@@ -1,0 +1,69 @@
+image: Visual Studio 2017 Preview
+
+init:
+  - git config --global core.autocrlf input
+  - SET PATH=%POSTGRES_PATH%\bin;%MYSQL_PATH%\bin;%PATH%
+
+install:
+  - nuget install redis-64 -excludeversion
+  - redis-64\tools\redis-server.exe --service-install
+  - redis-64\tools\redis-server.exe --service-start
+
+skip_branch_with_pr: true
+skip_tags: true
+skip_commits:
+  files:
+    - '**/*.md'
+    - docs/*
+    
+environment:
+  Appveyor: true
+  # Postgres
+  POSTGRES_PATH: C:\Program Files\PostgreSQL\9.6
+  PGUSER: postgres
+  PGPASSWORD: Password12!
+  POSTGRES_ENV_POSTGRES_USER: postgres
+  POSTGRES_ENV_POSTGRES_PASSWORD: Password12!
+  POSTGRES_ENV_POSTGRES_DB: test
+  PostgreSqlConnectionString: Server=localhost;Port=5432;Database=test;User Id=postgres;Password=Password12!;
+  # MySQL
+  MYSQL_PATH: C:\Program Files\MySql\MySQL Server 5.7
+  MYSQL_PWD: Password12!
+  MYSQL_ENV_MYSQL_USER: root
+  MYSQL_ENV_MYSQL_PASSWORD: Password12!
+  MYSQL_ENV_MYSQL_DATABASE: test
+  MySQLConnectionString: server=localhost;uid=root;pwd=Password12!;database=test;Allow User Variables=true
+services:
+  - mssql2016
+  - mysql
+  - postgresql
+
+nuget:
+  disable_publish_on_pr: true
+
+build_script:
+  # Postgres
+  - createdb test
+  # MySQL
+  - mysql -e "create database test;" --user=root
+  - ps: .\build.ps1 -BuildNumber "$env:APPVEYOR_BUILD_NUMBER" -Version "$env:APPVEYOR_REPO_TAG_NAME" -PullRequestNumber "$env:APPVEYOR_PULL_REQUEST_NUMBER" -CreatePackages $true
+
+test: off
+artifacts:
+- path: .\.nupkgs\*.nupkg
+  
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/miniprofiler/api/v2
+  on:
+    branch: master  
+  api_key:
+    secure: LLyiHXh/pU4i8H2Cn74C5sXNV+5MX0gpJZuunTnXv/KoafhfmkB/65/TcV4B7kj2
+  symbol_server: https://www.myget.org/F/miniprofiler/symbols/api/v2/package
+- provider: NuGet
+  server: https://www.myget.org/F/stackoverflow/api/v2
+  on:
+    branch: master  
+  api_key:
+    secure: P/UHxq2DEs0GI1SoDXDesHjRVsSVgdywz5vmsnhFQQY5aJgO3kP+QfhwfhXz19Rw
+  symbol_server: https://www.myget.org/F/stackoverflow/symbols/api/v2/package

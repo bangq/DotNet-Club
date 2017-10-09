@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>MiniProfiler.AspNetCore.Mvc</AssemblyName>
+    <Title>MiniProfiler for ASP.NET Core MVC</Title>
+    <Description>Lightweight mini-profiler, designed for ASP.NET Core MVC (*not* System.Web) websites</Description>
+    <Authors>Nick Craver</Authors>
+    <PackageTags>ASP.NET Core;MVC;MVC Core;$(PackageBaseTags)</PackageTags>
+    <TargetFrameworks>net451;net46;netstandard1.6;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiniProfiler.AspNetCore\MiniProfiler.AspNetCore.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="1.1.2" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.0" />
+  </ItemGroup>
+</Project>

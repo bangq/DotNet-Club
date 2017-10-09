@@ -5,3 +5,4 @@ var currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
 
     <li @((currentAction == "index" && currentController == "goods") ? "class=active" : "class")><a href="/Admin/goods/index"><i class="menu-icon fa fa-caret-right"></i>商品管理 </a><b class="arrow"></b></li>
 
+2.mvc 性能分析工具 https://miniprofiler.com/

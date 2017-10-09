@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MiniProfiler.Mvc5</name>
+    </assembly>
+    <members>
+        <member name="T:StackExchange.Profiling.Mvc.ClientTimingHelperExtensions">
+            <summary>
+            Used to provide MVC-specific extensions for gathering <see cref="T:StackExchange.Profiling.ClientTimingHelper"/> information.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ClientTimingHelperExtensions.InitClientTimings(System.Web.WebPages.WebPageBase)">
+            <summary>
+            This needs to be called at the beginning of the layout for client side probe support, returns nothing if mini profiler is not enabled
+            </summary>
+            <param name="page">Page being timed</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ClientTimingHelperExtensions.TimeScript(System.Web.WebPages.WebPageBase,System.String,System.Func{System.Object,System.Web.WebPages.HelperResult})">
+            <summary>
+            To be used inline in razor pages - times a script be sure to call <c>InitClientTimings</c> first
+            </summary>
+            <param name="page">Page being timed</param>
+            <param name="name">Name of the script</param>
+            <param name="html">Html helper to render</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ClientTimingHelperExtensions.TimeScript(System.Web.WebPages.WebPageBase,System.String,System.Web.IHtmlString)">
+            <summary>
+            To be used inline in razor pages - times a script be sure to call <c>InitClientTimings</c> first
+            </summary>
+            <param name="page">Page being timed</param>
+            <param name="name">Name of the script</param>
+            <param name="html">Html to render</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ClientTimingHelperExtensions.TimeScript(System.Web.WebPages.WebPageBase,System.String,System.String)">
+            <summary>
+            To be used inline in razor pages - times a script be sure to call <c>InitClientTimings</c> first
+            </summary>
+            <param name="page">Page being timed</param>
+            <param name="name">Name of the script</param>
+            <param name="html">Html to render</param>
+        </member>
+        <member name="T:StackExchange.Profiling.Mvc.ProfilingActionFilter">
+            <summary>
+            This filter can be applied globally to hook up automatic action profiling
+            </summary>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ProfilingActionFilter.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Happens before the action starts running
+            </summary>
+            <param name="filterContext">The filter context to handle the start of.</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ProfilingActionFilter.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Happens after the action executes
+            </summary>
+            <param name="filterContext">The filter context to handle the end of.</param>
+        </member>
+        <member name="T:StackExchange.Profiling.Mvc.ProfilingViewEngine">
+            <summary>
+            You can wrap your view engines with this view to enable profiling on views and partial
+            </summary>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ProfilingViewEngine.#ctor(System.Web.Mvc.IViewEngine)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StackExchange.Profiling.Mvc.ProfilingViewEngine"/> class. 
+            </summary>
+            <param name="wrapped">The view engine to wrap in profiling.</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ProfilingViewEngine.FindPartialView(System.Web.Mvc.ControllerContext,System.String,System.Boolean)">
+            <summary>
+            Find a partial view
+            </summary>
+            <param name="controllerContext">The context to search for this partial with.</param>
+            <param name="partialViewName">The view name to search for.</param>
+            <param name="useCache">Whether to use cached lookups.</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ProfilingViewEngine.FindView(System.Web.Mvc.ControllerContext,System.String,System.String,System.Boolean)">
+            <summary>
+            Find a full view
+            </summary>
+            <param name="controllerContext">The context to search for this view with.</param>
+            <param name="viewName">The view name to search for.</param>
+            <param name="masterName">The master view name.</param>
+            <param name="useCache">Whether to use cached lookups.</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.ProfilingViewEngine.ReleaseView(System.Web.Mvc.ControllerContext,System.Web.Mvc.IView)">
+            <summary>
+            Release the rendered view
+            </summary>
+            <param name="controllerContext">The controller context the view is in.</param>
+            <param name="view">The view to release.</param>
+        </member>
+        <member name="T:StackExchange.Profiling.Mvc.WrappedView">
+            <summary>
+            Wrapped MVC View that ProfilingViewEngine uses to log profiling data
+            </summary>
+        </member>
+        <member name="F:StackExchange.Profiling.Mvc.WrappedView._wrapped">
+            <summary>
+            MVC IView that is wrapped by the ProfilingViewEngine
+            </summary>
+        </member>
+        <member name="P:StackExchange.Profiling.Mvc.WrappedView.Name">
+            <summary>
+            Gets or sets the wrapped view name.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Profiling.Mvc.WrappedView.IsPartial">
+            <summary>
+            Gets or sets a value indicating whether the wrapped view is partial.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Profiling.Mvc.WrappedView.ViewPath">
+            <summary>
+            Gets the wrapped view path.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.WrappedView.#ctor(System.Web.Mvc.IView,System.String,System.Boolean)">
+            <summary>
+            Initialises a new instance of the <see cref="T:StackExchange.Profiling.Mvc.WrappedView"/> class. 
+            </summary>
+            <param name="wrapped">The <see cref="T:System.Web.Mvc.IView"/> to be wrapped (and profiled).</param>
+            <param name="name">The name of the view.</param>
+            <param name="isPartial">Whether the view is a partial.</param>
+        </member>
+        <member name="M:StackExchange.Profiling.Mvc.WrappedView.Render(System.Web.Mvc.ViewContext,System.IO.TextWriter)">
+            <summary>
+            Renders the WrappedView and logs profiling data.
+            </summary>
+            <param name="viewContext">The view context to render.</param>
+            <param name="writer">The writer to render the view to.</param>
+        </member>
+    </members>
+</doc>

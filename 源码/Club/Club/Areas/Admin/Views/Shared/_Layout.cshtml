@@ -1,4 +1,4 @@
-﻿
+﻿@using StackExchange.Profiling;
 @{
     ViewBag.Title = "Index";
     Layout = null;
@@ -584,21 +584,22 @@
     <script src="/Areas/Admin/Assets/scripts/ace/elements.onpage-help.js"></script>
     <script src="/Areas/Admin/Assets/scripts/ace/ace.onpage-help.js"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-    $(document).ready(function () {
-        if ('@TempData["Msg"]' != '') {
-            var d = dialog({
-                title: '提示',
-                width: '20em',
-                content: '@TempData["Msg"]'
+            $(document).ready(function() {
+                if ('@TempData["Msg"]' != '') {
+                    var d = dialog({
+                        title: '提示',
+                        width: '20em',
+                        content: '@TempData["Msg"]'
+                    });
+                    d.show();
+                }
+
             });
-            d.show();
-        }
-      
-    });
-     
-    </script>
+
+        </script>
+    @MiniProfiler.RenderIncludes()
 </body>
 </html>
 
