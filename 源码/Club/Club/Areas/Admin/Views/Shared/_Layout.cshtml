@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Index";
     Layout = null;
+    var currentController = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    var currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
+
 }
 
 <!DOCTYPE html>
@@ -400,7 +403,7 @@
                 <li class="active open">
                     <a href="#" class="dropdown-toggle"> <i class="menu-icon fa a1"></i> <span class="menu-text">帖子管理 </span><b class="arrow fa fa-angle-down"></b> </a> <b class="arrow"></b>
                     <ul class="submenu">
-                        <li class="active"> <a href="/admin/post/index"> <i class="menu-icon fa fa-caret-right"></i> 帖子管理 </a> <b class="arrow"></b></li>
+                        <li @((currentAction == "index" && currentController == "post") ? "class=active" : "class")><a href="/admin/post/index"><i class="menu-icon fa fa-caret-right"></i>帖子管理 </a><b class="arrow"></b></li>
                         <li class=""> <a href="order_detail.html"> <i class="menu-icon fa fa-caret-right"></i> 分类管理 </a> <b class="arrow"></b></li>
                     </ul>
                 </li>

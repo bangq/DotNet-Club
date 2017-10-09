@@ -1,0 +1,7 @@
+1.view 里面获取 当前的 controller 和action
+
+var currentController = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+var currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
+
+    <li @((currentAction == "index" && currentController == "goods") ? "class=active" : "class")><a href="/Admin/goods/index"><i class="menu-icon fa fa-caret-right"></i>商品管理 </a><b class="arrow"></b></li>
+
