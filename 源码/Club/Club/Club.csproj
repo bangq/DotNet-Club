@@ -220,6 +220,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -488,6 +489,8 @@
     <Content Include="Areas\Admin\Assets\styles\ui.jqgrid.css" />
     <Content Include="Assets\images\loading1.png" />
     <Content Include="Assets\images\会员.png" />
+    <Content Include="Assets\images\帖子.png" />
+    <Content Include="Assets\images\精华.png" />
     <Content Include="Assets\Plugs\font-awesome\css\font-awesome.css" />
     <Content Include="Assets\images\blank.gif" />
     <Content Include="Assets\images\fancybox_loading%402x.gif" />
@@ -498,9 +501,6 @@
     <Content Include="Assets\images\favicon.ico" />
     <Content Include="Assets\images\logo.png" />
     <Content Include="Assets\images\pbg.jpg" />
-    <Content Include="Assets\images\浼氬憳.png" />
-    <Content Include="Assets\images\甯栧瓙.png" />
-    <Content Include="Assets\images\绮惧崕.png" />
     <Content Include="Assets\Plugs\layer\layer.js" />
     <Content Include="Assets\Plugs\layer\skin\layer.css" />
     <Content Include="Assets\scripts\bootstrap.min.js" />
@@ -511,7 +511,7 @@
     <Content Include="Assets\styles\bootstrap.min.css" />
     <Content Include="Assets\styles\common.css" />
     <Content Include="Assets\styles\jquery.fancybox.css-v=2.1.5.css" />
-    <Content Include="Assets\styles\Style__4755A96EF3B41AF9.css" />
+    <Content Include="Assets\styles\style.css" />
     <Content Include="Assets\styles\Style__FAFCF5971BCBCBAF.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -587,15 +587,16 @@
     <Content Include="Assets\scripts\Script__26F1BB2674E922FB" />
     <Content Include="Assets\scripts\Script__4B1CC929B4E0D4A0" />
     <Content Include="Assets\scripts\Script__5931B35C33207CED" />
-    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.eot-" />
-    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.eot-v=4.4.0" />
-    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.svg-v=4.4.0" />
-    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.ttf-v=4.4.0" />
-    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff-v=4.4.0" />
-    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff2-v=4.4.0" />
+    <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff" />
+    <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff2" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

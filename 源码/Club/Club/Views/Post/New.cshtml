@@ -1,0 +1,140 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>6789俱乐部</title>
+    <meta name="keywords" content="BBS,社区">
+    <meta name="description" content="------------这里是6789的描述----------------。">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" href="/Assets/images/favicon.ico" mce_href="/app/views/img/favicon.ico" type="image/x-icon">
+    <link href="/Assets/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="/Assets/Plugs/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Assets/styles/jquery.fancybox.css-v=2.1.5.css" rel="stylesheet">
+    <link href="/Assets/styles/animate.css" rel="stylesheet">
+    <link href="/Assets/styles/base.css-v=2.2.0.css" rel="stylesheet">
+    <link href="/Assets/styles/style.css" rel="stylesheet">
+    <script src="/Assets/scripts/jquery.min.js"></script>
+    <script src="/Assets/Plugs/layer/layer.js" type="text/javascript"></script>
+</head>
+<body>
+    <img src="/Assets/images/loading1.png" style="display: none" />
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 text-navy " style="font-size: 20px;"
+                           href="/">6789Club</a>
+                        <div role="search" class="navbar-form-custom" action="">
+                            <div class="form-group">
+                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
+                                       id="top-search">
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+            <script>
+                var tid = 49;
+                var rpi = 0;
+                var isTt = false;
+                var aid = 0;
+            </script>
+            <style>
+                iframe {
+                    width: 300px;
+                    height: 250px;
+                }
+
+                .blockquote {
+                    display: block;
+                    border-left: 8px solid #d0e5f2;
+                    padding: 5px 10px;
+                    margin: 10px 0;
+                    line-height: 1.4;
+                    font-size: 100%;
+                    background-color: #f1f1f1;
+                }
+
+                .topic-reward i {
+                    text-decoration: underline;
+                    color: #444;
+                    font-style: normal;
+                }
+            </style>
+            <div class="row wrapper border-bottom navy-bg page-heading">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="../index.htm" tppabs="http://bbs.bangke.com/">主页</a>
+                        </li>
+                        <li>
+                            <a href="../-type=站务管理.htm" tppabs="http://bbs.bangke.com/?type=站务管理">站务管理</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="row" style="margin: 20px 0px;">
+                                    <span class="chooseClub btn btn-sm btn-default" style="margin-bottom: 5px;" data-cid="2">
+                                        亲子帮
+                                    </span>
+                                    <span class="chooseClub btn btn-sm btn-default" style="margin-bottom: 5px;" data-cid="3">
+                                        摄影帮
+                                    </span>
+                                    <span class="chooseClub btn btn-sm btn-default" style="margin-bottom: 5px;" data-cid="5">
+                                        龙城茶座
+                                    </span>
+                                    <span class="chooseClub btn btn-sm btn-default" style="margin-bottom: 5px;" data-cid="7">
+                                        站务管理
+                                    </span>
+                                    <div class="space-15">
+                                    </div>
+                                    <input type="text" id="title" placeholder="请输入标题" maxlength="50" value="" class="form-control">
+                                </div>
+                                <div class="row" style="margin: 0px;">
+                                    <div id="post-edit"></div>
+                                    
+                                    <a class="more-input"><i class="fa fa-angle-double-down"></i></a>
+                                    <a id="post-btn" onclick="postTopic()" class="btn btn-sm btn-primary submit-btn" style="margin: 15px"><i class="fa fa-check "></i>提交 </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <link href="/Assets/Plugs/wangEditor/wangEditor.min.css" rel="stylesheet">
+            <script src="/Assets/Plugs/wangEditor/wangeditor.min.js" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                var E = window.wangEditor;
+                var editor = new E('#post-edit');
+                editor.create();
+            </script>
+            <div class="footer">
+                <div class="pull-right mobile-hide">
+                    苏ICP备13055054号-2.
+                </div>
+                <div>
+                    Copyright &copy; 2016 江苏嬉戏谷科技有限公司
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
