@@ -1,0 +1,48 @@
+
+.public {
+    border-top: 1px solid #e7eaec;
+    border-bottom: 1px solid #e7eaec;
+    color: #1ab394;
+    line-height: 22px;
+    margin-bottom: 15px;
+    padding-left: 5%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.wealth {
+    border: 1px solid #e7eaec;
+    border-radius: 2px;
+}
+
+    .wealth ul {
+        margin: 0;
+        padding: 0;
+        display: block;
+        background-color: #e7eaec;
+        margin-bottom: 10px;
+    }
+
+    .wealth li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        float: left;
+        width: 50%;
+        text-align: center;
+        line-height: 34px;
+    }
+
+    .wealth p {
+        text-align: center;
+        line-height: 24px;
+    }
+
+    .wealth span, .wealth a {
+        color: #ff0101;
+    }
+
+.current {
+    background-color: #1ab394;
+    color: white;
+}

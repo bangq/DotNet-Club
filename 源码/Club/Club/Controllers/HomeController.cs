@@ -75,34 +75,23 @@ namespace Club.Controllers
 
             //}
 
-            using (var db=new ClubEntities())
-            {
-                var users = db.User.ToList();
-                foreach (var user in users)
-                {
-                    //var pw = EncryptHelper.MD5Encoding(user.PassWord, user.Account);
-                    user.PassWord = "000000".MD5Encoding(user.Account);
-                }
-                db.SaveChanges();
-            }
+            //using (var db=new ClubEntities())
+            //{
+            //    var users = db.User.ToList();
+            //    foreach (var user in users)
+            //    {
+            //        //var pw = EncryptHelper.MD5Encoding(user.PassWord, user.Account);
+            //        user.PassWord = "000000".MD5Encoding(user.Account);
+            //    }
+            //    db.SaveChanges();
+            //}
 
            // var pw = EncryptHelper.MD5Encoding("000000","yongjiasoft");
-  
 
-            return Content("ok");
-        }
-
-        public ActionResult About()
-        {
-           
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
+
+        
     }
 }

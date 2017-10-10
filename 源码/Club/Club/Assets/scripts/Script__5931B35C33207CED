@@ -1,0 +1,50 @@
+$(".do-reward").on('click', function (event) {$(".reward-input").toggle('fast', function () {if (isWx) {$('body').animate({scrollTop: ($('.do-reward').offset().top - 20)});}
+if ($(this).is(':visible')) {$(this).find('input').focus();}});});
+$(".do-praise").one('click', function (event) {var that = $(this);that.attr('disabled', 'disabled');that.html('<i class="fa fa-spinner fa-spin"></i> 点赞中...');
+loadData('Praise', { tid: tid }, function (rt) {$(".p-tips").show();$(".topic-praise .clear").before('<a href="/User" class="praise-user"><img alt="image" class="img-circle" src="' + $("#my-avatar").attr('src') + '"></a>');that.html('<i class="fa fa-thumbs-up "></i> 已点赞');});});
+$(".do-collection").one('click', function (event) {var that = $(this);that.attr('disabled', 'disabled');that.html('<i class="fa fa-spinner fa-spin"></i> 收藏中...');
+loadData('Collect', { tid: tid }, function (rt) {that.html('<i class="fa fa-star"></i>&nbsp;已收藏');});});
+var rpid = 0;$(".do-reply").on('click', function (event) {rpid = $(this).attr('data-pid');if (rpid == 0) {$(".reply-list").after($("#reply-input"));} else {$(this).parent('.pull-right').after($("#reply-input"));$(this).parent('.pull-right').after('<div class="clearfix reply-input-blank"></div>');}
+$(".wangEditor-txt").focus();});
+$('.delete-reply').click(function () {var that = this;layer.confirm('确定删除该回复么？', {title: '提醒',btn: ['确定', '取消']}, function () {$(that).attr('disabled', 'disabled');layer.close();loadData('DeleteReplay', { rid: $(that).attr('rid') }, function (rt) {if (rt == 'ok') {layer.msg('删除成功.', { icon: 1 });setTimeout(function () {$(that).parents('.feed-element:first').hide('fast');}, 300);} else {layer.msg(rt, { icon: 2 });}});}, function () { });});
+$('.change-club').click(function () {var that = this;
+$(that).attr('disabled', 'disabled');
+loadData('ChangePlate', { tid: tid, topid: $(this).attr('pid') }, function (rt) {if (rt == 'ok') {layer.msg('修改分类成功.', { icon: 1 }, function () { reload(); });} else {layer.msg(rt, { icon: 2 });}});});
+$('.delete-topic').click(function () {var that = this;layer.confirm('确定删除该帖子么？', {title: '提醒',btn: ['确定', '取消']}, function () {$(that).attr('disabled', 'disabled');layer.close();loadData('DeleteTopic', { tid: tid }, function (rt) {if (rt == 'ok') {layer.msg('删除成功.', { icon: 1 }, function () {window.location.href = '/';});} else {layer.msg(rt, { icon: 2 });}});}, function () { });});
+$('.top-topic').click(function () {var that = this;$(that).attr('disabled', 'disabled');loadData('TopicTop', { tid: tid }, function (rt) {if (rt == 'ok') {layer.msg('操作成功.', { icon: 1 }, function () { reload(); });} else {layer.msg(rt, { icon: 2 });}});});
+$('.lock-topic').click(function () {var that = this;$(that).attr('disabled', 'disabled');loadData('TopicLock', { tid: tid }, function (rt) {if (rt == 'ok') {layer.msg('操作成功.', { icon: 1 }, function () { reload(); });} else {layer.msg(rt, { icon: 2 });}});});
+$('.good-topic').click(function () {var that = this;$(that).attr('disabled', 'disabled');loadData('TopicGood', { tid: tid }, function (rt) {if (rt == 'ok') {layer.msg('操作成功.', { icon: 1 }, function () { window.location.href = '/Read/' + tid + '?d=' + new Date().getTime() });} else {layer.msg(rt, { icon: 2 });}});});
+$(".confirm-reward").on('click', function (event) {var o = $(this).html();var that = this;var score = $(".reward-score").val();var cause = $('.reward-cause').val() || $('.reward-cause').attr('placeholder');if (score >= 1 && score <= 1000) {$(this).attr('disabled', 'disabled');$(this).html('<i class="fa fa-spinner fa-spin"></i> 打赏中...');
+loadData('Reward', { tid: tid, score: score, cause: cause }, function (rt) {if (rt == 'ok') {layer.msg('打赏成功.', { icon: 1 });$(".reward-score").val('');$(".reward-input").toggle('fast');$(".topic-reward").show();$(".topic-reward").append('<p><a href="/User">我</a> &nbsp; <small>刚刚</small> &nbsp; 打赏了 <strong>' + score + '</strong> 金币 <i>' + cause + '</i></p>');$(that).html(o);$(that).removeAttr('disabled');} else {  layer.msg(rt, { time:2000,type:1 });$(that).html(o);$(that).removeAttr('disabled');}});} else {layer.msg('单次打赏金币范围1~1000', { icon: 2 });}});
+function removeHTMLTag(str) {str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tagstr = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白str = str.replace(/&nbsp;/ig, ''); //去掉&nbsp;return str;}
+wangEditor.config.printLog = false;var edt = new wangEditor('editor');edt.config.menuFixed = false;
+var isMobile = navigator.userAgent.match(/(iPad).*OS\s([\d_]+)/) || navigator.userAgent.match(/(iPhone\sOS)\s([\d_]+)/) || navigator.userAgent.match(/(Android)\s+([\d.]+)/);if (isMobile) {menu = ['emotion', 'img'];} else {menu = ['bold', 'underline', 'italic', 'strikethrough', 'quote', '|', 'table', 'emotion', 'img', 'video', 'location', 'unorderlist', 'orderlist', '|', 'link', 'unlink', 'insertcode', 'undo'];}edt.config.menus = menu;
+var emoji = [];for (var i = 1; i <= 36; i++) {emoji.push({ icon: '/app/views/emoji/' + i + '.gif', value: '[emoji:' + i + ']' });};edt.config.emotions = {'default': {title: '默认',data: emoji}};
+// ------- 配置上传的初始化事件 -------function edtUploadInit(editor) { 
+// 编辑器中，触发选择图片的按钮的id$(".wangeditor-menu-img-picture").parent().parent().attr("id", "imgbtn");
+btnId = "imgbtn";
+//实例化一个上传对象uploader = new plupload.Uploader({browse_button: btnId,  // 选择文件的按钮的idurl: '/WangEditUpload',  // 服务器端的上传地址flash_swf_url: '/Assets/plupload/Moxie.swf',sliverlight_xap_url: '/Assets/plupload/Moxie.xap',//filters: {//    mime_types: [//    //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）//        {title: "图片文件", extensions: "jpg,gif,png,bmp" }//    ]//},resize: {//压缩 crop: true,preserve_headers: false},});uploader.init();
+//存储所有图片的url地址var urls = [];
+uploader.bind('BeforeUpload', function (uploader, file) {uploader.settings.resize = { enabled: true, preserve_headers: true, crop: false };
+if (file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png') {//gif使用FileReader进行预览,因为mOxie.Image只支持jpg和png var preloader = new mOxie.Image();preloader.onload = function () {if (preloader.width > 800) {uploader.settings.resize.width = 800;uploader.settings.resize.height = parseInt((800 / preloader.width) * preloader.height);}preloader.destroy();preloader = null;};preloader.load(file.getSource());}else{alert("请选择正确的图片文件!");uploader.refresh();}
+if (file.origSize > 1024 * 1024 * 4)uploader.settings.resize.quality = 90;else if (file.origSize > 1024 * 1024)uploader.settings.resize.quality = 90;else if (file.origSize > 1024 * 256)uploader.settings.resize.quality = 90;elseuploader.settings.resize = { enabled: false, preserve_headers: true, crop: false };});
+//绑定文件添加到队列的事件uploader.bind('FilesAdded', function (ul, files) {editor.showUploadProgress(15);// 文件添加之后，开始执行上传setTimeout(function () {ul.start();}, 100);});
+//单个文件上传之后uploader.bind('FileUploaded', function (ul, file, responseObject) {//注意，要从服务器返回图片的url地址，否则上传的图片无法显示在编辑器中var url = responseObject.response;//先将url地址存储来，待所有图片都上传完了，再统一处理urls.push(url);});
+//全部文件上传时候uploader.bind('UploadComplete', function (ul, files) { // 用 try catch 兼容IE低版本的异常情况try {//打印出所有图片的url地址$.each(urls, function (key, value) {// 插入到编辑器中editor.command(null, 'insertHtml', '<img src="' + value + '" style="max-width:100%;"/>');});} catch (ex) {// 此处可不写代码} finally {//清空url数组urls = [];
+// 隐藏进度条editor.hideUploadProgress();//uploader.refresh();}});
+// 上传进度条uploader.bind('UploadProgress', function (uploader, file) {// 显示进度条editor.showUploadProgress(file.percent);}); }edt.config.uploadImgUrl = "/WangEditUpload";    edt.create();edtUploadInit(edt); if (isMobile) {$(".wangEditor-txt").height(140);}
+$('.wangEditor-txt').keypress(function (e) {if (e.ctrlKey && (e.which == 13 || e.which == 10)) {postReply();}});
+$(".more-input").on('click', function (event) {$(".wangEditor-txt").height($(".wangEditor-txt").height() + 150);});
+if (rpi > 0) {$(function () {$('.feed-element[pid=' + rpi + ']').find('.content:first').wrap('<b/>');setTimeout(function () {$('body').animate({scrollTop: ($('.feed-element[pid=' + rpi + ']').offset().top - 20)});}, 500)});}
+$('.wangEditor-menu-container').append('<div id="saving-tip" class="saving-tip pull-right">'+ '<i class="fa fa-spinner fa-spin"></i> 保存草稿...' + '</div>'+ '<div class="clearfix"></div>');
+if (localStorage['bbsAutoSave']) {edt.$txt.html(localStorage['bbsAutoSave']);}
+var autoSaveThId = 0;function autoSave() { // 每10秒自动保存草稿clearTimeout(autoSaveThId);if ($('.editor').val() != '') {localStorage.setItem('bbsAutoSave', edt.$txt.html());$('#saving-tip').attr('class', 'saving-tip active pull-right');
+setTimeout(function () {$('#saving-tip').attr('class', 'saving-tip pull-right');}, 3000);}autoSaveThId = setTimeout(autoSave, 20000);}
+function stopAutoSave() {clearTimeout(autoSaveThId);}
+$('.wangEditor-txt').focus(autoSave);$('.wangEditor-txt').blur(function () { autoSave(); stopAutoSave(); });
+$('#post-btn').click(postReply);function postReply() {$('#post-btn').focus();var content = edt.$txt.html();
+if (!edt.$txt.text() && edt.$txt.html().length < 20) {layer.msg('回复不能为空....');return;}
+$('#post-btn').attr('disabled', 'disabled');$('#post-btn').html('<i class="fa fa-spinner fa-spin"></i> 发布中 ...');
+loadData('PublishReply', { tid: tid, rpid: rpid, content: content }, function (rt) {if (rt == "ok") {layer.msg('发布回复成功!获得2个金币.', { icon: 1 });
+edt.$txt.html(''); localStorage.removeItem('bbsAutoSave');stopAutoSave();
+setTimeout(function () {if (isWx) { reload() } else { window.location.reload() };}, 1500);}else {layer.msg(rt, { icon: 2 });}});}
