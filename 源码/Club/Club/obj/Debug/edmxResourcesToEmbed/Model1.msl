@@ -70,6 +70,7 @@
       <EntityTypeMapping TypeName="ClubEntites.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="IsAbort" ColumnName="IsAbort" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="integral" ColumnName="integral" />

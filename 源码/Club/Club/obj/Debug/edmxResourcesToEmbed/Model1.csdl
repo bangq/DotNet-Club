@@ -118,6 +118,7 @@
     <Property Name="integral" Type="Int32" Nullable="false" />
     <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="IsAbort" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Collection" Relationship="ClubEntites.FK_Collection_User" FromRole="User" ToRole="Collection" />
     <NavigationProperty Name="Level" Relationship="ClubEntites.FK_User_Level" FromRole="User" ToRole="Level" />

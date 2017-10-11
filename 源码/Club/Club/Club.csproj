@@ -219,6 +219,7 @@
     <Compile Include="Collection.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -243,9 +244,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Post.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -503,6 +502,10 @@
     <Content Include="Assets\images\pbg.jpg" />
     <Content Include="Assets\Plugs\layer\layer.js" />
     <Content Include="Assets\Plugs\layer\skin\layer.css" />
+    <Content Include="Assets\Plugs\wangEditor\wangEditor.css" />
+    <Content Include="Assets\Plugs\wangEditor\wangEditor.js" />
+    <Content Include="Assets\Plugs\wangEditor\wangEditor.min.css" />
+    <Content Include="Assets\Plugs\wangEditor\wangEditor.min.js" />
     <Content Include="Assets\scripts\bootstrap.min.js" />
     <Content Include="Assets\scripts\jquery.min.js" />
     <Content Include="Assets\scripts\jweixin-1.0.0.js" />
@@ -554,6 +557,7 @@
     <Folder Include="Areas\Admin\Assets\styles\less\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Assets\Plugs\wangEditor\fonts\" />
     <Folder Include="Assets\scripts\bootstrap\" />
     <Folder Include="Assets\scripts\jquery\" />
     <Folder Include="Assets\scripts\vendor\" />
@@ -592,6 +596,7 @@
     <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.ttf" />
     <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff" />
     <None Include="Assets\Plugs\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\Plugs\wangEditor\wangEditor.min.js.map" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />

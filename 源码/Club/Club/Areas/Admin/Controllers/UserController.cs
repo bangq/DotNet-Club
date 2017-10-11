@@ -31,7 +31,7 @@ namespace Club.Areas.Admin.Controllers
             
             using (var db = new ClubEntities())
             {
-                var list = db.User.Where(a => a.IsAbort == false).Include(a => a.Level);
+                var list = db.User.Where(a => a.IsAbort == false);
 
                 if (!string.IsNullOrEmpty(kw))
                 {
@@ -81,7 +81,7 @@ namespace Club.Areas.Admin.Controllers
 
             using (var db = new ClubEntities())
             {
-                var user = db.User.Include(a => a.Level).FirstOrDefault(a => a.Id == Id);
+                var user = db.User.FirstOrDefault(a => a.Id == Id);
 
 
                 var selectItems = new List<SelectListItem>();

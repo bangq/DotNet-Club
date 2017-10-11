@@ -122,21 +122,24 @@
                     </div>
                 </div>
             </div>
+            <form action="/user/login" method="post">
+                <div class="wrapper wrapper-content login-main">
+                    <div class="login">
+                        <div class="login-p">
+                            <input type="text" name="Account" placeholder="请输入账号">
+                        </div>
+                        <div class="login-p">
+                            <input type="password" name="PassWord" placeholder="请输入密码">
+                        </div>
 
-            <div class="wrapper wrapper-content login-main">
-                <div class="login">
-                    <div class="login-p">
-                        <input type="text" name="" placeholder="请输入账号">
-                    </div>
-                    <div class="login-p">
-                        <input type="password" name="" placeholder="请输入密码">
-                    </div>
-                   
-                    <div class="login-p">
-                        <button class="btn btn-primary btn-xs">登录</button>
+                        <div class="login-p">
+                            <button type="submit" class="btn btn-primary btn-xs">登录</button>
+                        </div>
+                        <a href="/user/register">去注册</a>
                     </div>
                 </div>
-            </div>
+
+            </form>
         </div>
     </div>
 </body>

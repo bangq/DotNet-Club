@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "首页";
     Layout = null;
+    var loginUser = (User)ViewBag.LoginUser;
 }
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 text-navy " style="font-size: 20px;"
-                           href="/" >6789Club</a>
+                           href="/">6789Club</a>
                         <div role="search" class="navbar-form-custom" action="">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
@@ -39,10 +40,48 @@
                             </div>
                         </div>
                     </div>
-                    
+                    @{
+                        if (loginUser != null)
+                        {
+                            <ul class="nav navbar-top-links navbar-right pull-right count-info">
+                                <li>
+                                    <a href="/User" title="@loginUser.Name" style="padding: 15px 5px; line-height: 30px;">
+                                        <img alt="image" id="my-avatar" class="img-circle profile-small-avatar" src="/Assets/images/logo.png">
+                                        <span class="mobile-hide">@loginUser.Name</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-toggle" href="/Notice"><i class="fa fa-bell-o header-ico"></i></a>
+                                </li>
+                                <li>
+                                    <a href="/user/login">
+                                        <i class="fa fa-sign-out header-ico" >
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="nav navbar-top-links navbar-right pull-right count-info">
+                                <li>
+
+                                    <div class="user-login">
+                                        <a class="btn btn-primary btn-xs" href="/user/login">
+                                            登录
+                                        </a>
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        }
+                    }
+
+
                 </nav>
             </div>
-           
+
             <div class="row wrapper border-bottom navy-bg page-heading">
                 <div class="col-lg-12">
                     <ol class="breadcrumb"></ol>
@@ -52,7 +91,7 @@
                 <div class="ibox-content m-b-sm border-bottom">
                     <div class="p-xs">
                         <div class="pull-left m-r-md navy-bg" style="border-radius: 50%;">
-                            <img src="/Assets/images/logo.png"  alt="" width="60">
+                            <img src="/Assets/images/logo.png" alt="" width="60">
                         </div>
                         <h2>
                             6789俱乐部·因趣而生
@@ -966,7 +1005,7 @@
                                             <script>_itemCount = 544;</script>
                                         </ul>
                                     </div>
-                                    
+
 
                                 </div>
                             </div>
@@ -1029,7 +1068,7 @@
                                                 <div class="clear clearfix">
                                                 </div>
                                             </div>
-                                             
+
                                             <div class="clearfix">
                                             </div>
                                             <br />

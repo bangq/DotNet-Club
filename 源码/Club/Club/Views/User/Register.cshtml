@@ -84,57 +84,91 @@
 
 <body>
     <img src="/Assets/images/loading1.png" style="display: none" />
-    <div id="wrapper">
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                    <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 text-navy " style="font-size: 20px;" href="/" >6789Club </a>
-                        <div role="search" class="navbar-form-custom" action="">
-                            <div class="form-group">
-                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
-                            </div>
+<div id="wrapper">
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 text-navy " style="font-size: 20px;" href="index.htm" tppabs="http://bbs.bangke.com/">6789Club </a>
+                    <div role="search" class="navbar-form-custom" action="">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
                         </div>
                     </div>
+                </div>
+                <ul class="nav navbar-top-links navbar-right pull-right count-info">
+                    <li>
+                        
+                        <div class="user-login">
+                            <a class="btn btn-primary btn-xs" href="/user/login" >
+                                登录
+                            </a>
+                           
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <link href="/Assets/styles/Style__FAFCF5971BCBCBAF.css" type="text/css" rel="stylesheet"/>
+        <div class="row wrapper border-bottom navy-bg page-heading">
+            <div class="col-lg-12">
+                <ol class="breadcrumb"></ol>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="ibox-content m-b-sm border-bottom">
+                <div class="p-xs">
+                    <div class="pull-left m-r-md navy-bg" style="border-radius: 50%;">
+                        <img src="/Assets/images/logo.png" alt="" width="60">
+                    </div>
+                    <h2>6789俱乐部·因趣而生</h2>
+                    <span>定期为有相同兴趣的人提供活动，励志做常州最好玩的俱乐部，加入6789俱乐部，我们带你吃喝玩乐玩转生活，趣味无穷。</span>
+                </div>
+            </div>
+        </div>
+        <form action="/user/register" method="post">
 
-                </nav>
-            </div>
-            <link href="/Assets/styles/Style__FAFCF5971BCBCBAF.css"  type="text/css" rel="stylesheet" />
-            <div class="row wrapper border-bottom navy-bg page-heading">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb"></ol>
-                </div>
-            </div>
-            <div class="wrapper wrapper-content">
-                <div class="ibox-content m-b-sm border-bottom">
-                    <div class="p-xs">
-                        <div class="pull-left m-r-md navy-bg" style="border-radius: 50%;">
-                            <img src="/Assets/images/logo.png"   alt="" width="60">
-                        </div>
-                        <h2>6789俱乐部·因趣而生</h2>
-                        <span>定期为有相同兴趣的人提供活动，励志做常州最好玩的俱乐部，加入6789俱乐部，我们带你吃喝玩乐玩转生活，趣味无穷。</span>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="wrapper wrapper-content login-main">
                 <div class="login">
                     <div class="login-p">
-                        <input type="text" name="" placeholder="请输入账号">
+                        <input type="text" name="Account" placeholder="请输入账号">
                     </div>
                     <div class="login-p">
-                        <input type="password" name="" placeholder="请输入密码">
+                        <input type="password" name="PassWord" placeholder="请输入密码">
                     </div>
                     <div class="login-p">
-                        <input type="password" name="" placeholder="请再次输入密码">
+                        <input type="password" name="PassWord" placeholder="请再次输入密码">
                     </div>
                     <div class="login-p">
-                        <button class="btn btn-primary btn-xs">注册</button>
+                        <input type="text" name="Name" placeholder="用户名">
+                    </div>
+                    <div class="login-p">
+                        <button type="submit" class="btn btn-primary btn-xs">注册</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
+</div>
+    <script src="/Areas/Admin/Assets/scripts/dialog.js"></script>
+    <script type="text/javascript">
+
+            $(document).ready(function() {
+                if ('@TempData["Msg"]' != '') {
+                    var d = dialog({
+                        title: '提示',
+                        width: '20em',
+                        content: '@TempData["Msg"]'
+                    });
+                    d.show();
+                }
+
+            });
+
+    </script>
 </body>
 
 </html>

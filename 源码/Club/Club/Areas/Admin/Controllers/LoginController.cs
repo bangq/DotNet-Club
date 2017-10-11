@@ -41,7 +41,7 @@ namespace Club.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
                 //设置用户登陆状态
-                Session["loginUser"] = user;
+                Session["AdminUser"] = user;
 
 
                 return Redirect("/admin/home");

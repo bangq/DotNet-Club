@@ -71,6 +71,7 @@
     <Property Name="integral" Type="int" Nullable="false" />
     <Property Name="Image" Type="nvarchar" MaxLength="500" />
     <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
     <Property Name="IsAbort" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Collection_Post">
