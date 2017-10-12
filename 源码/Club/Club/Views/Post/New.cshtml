@@ -86,42 +86,41 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="wrapper wrapper-content">
-                        <div class="ibox">
-                            <div class="ibox-content">
-                                <div class="row" style="margin: 20px 0px;">
-                                    @{
-                                        foreach (var item in categorys)
-                                        {
-                                            <span class="chooseClub btn btn-sm btn-default" style="margin-bottom: 5px;" data-cid="@item.Id">
-                                                @item.Name
-                                            </span>
+                    <form id="post-form" action="/post/save" method="post">
+                        <div class="wrapper wrapper-content">
+                            <div class="ibox">
+                                <div class="ibox-content">
+                                    <div class="row" style="margin: 20px 0px;">
+                                        @{
+                                            foreach (var item in categorys)
+                                            {
+                                                <span class="chooseClub btn btn-sm btn-default" style="margin-bottom: 5px;" data-cid="@item.Id">
+                                                    @item.Name
+                                                </span>
 
+                                            }
                                         }
-                                    }
-                                    <input type="hidden" id="categoryId" name="categoryId" value=""/>
-                                    <script type="text/javascript">
-                                        $('.chooseClub').on('click',function() {
-                                            $(this).siblings('span').attr('class', 'chooseClub btn btn-sm btn-default');
-                                            $(this).attr('class', 'chooseClub btn btn-sm btn-primary');
-                                            var cageoryId = $(this).attr('data-cid');
-                                            $('#categoryId').val(cageoryId);
-                                        })
-                                    </script>
+                                        <input type="hidden" id="categoryId" name="categoryId" value="0" />
+                                        <input type="hidden" id="content" name="content" value="" />
 
-                                    <div class="space-15">
+
+                                        <div class="space-15">
+                                        </div>
+                                        <input type="text" id="title" name="Title" placeholder="请输入标题" maxlength="50" value="" class="form-control">
                                     </div>
-                                    <input type="text" id="title" placeholder="请输入标题" maxlength="50" value="" class="form-control">
-                                </div>
-                                <div class="row" style="margin: 0px;">
-                                    <div id="post-edit"></div>
+                                    <div class="row" style="margin: 0px;">
+                                        <div id="post-edit"></div>
 
-                                    <a class="more-input"><i class="fa fa-angle-double-down"></i></a>
-                                    <a id="post-btn" onclick="postTopic()" class="btn btn-sm btn-primary submit-btn" style="margin: 15px"><i class="fa fa-check "></i>提交 </a>
+                                        <a class="more-input"><i class="fa fa-angle-double-down"></i></a>
+                                        @*<a id="post-btn" class="btn btn-sm btn-primary submit-btn" style="margin: 15px"><i class="fa fa-check "></i>提交 </a>*@
+                                        <button id="post-submit" type="submit" class="btn btn-sm btn-primary submit-btn" style="margin: 15px">提交</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+
+
                 </div>
             </div>
 
@@ -132,7 +131,37 @@
                 var E = window.wangEditor;
                 var editor = new E('#post-edit');
                 editor.create();
+
+                $("#post-form").submit(function () {
+                    var content = editor.txt.html();
+                    $('#content').val(content);
+                    return true;
+                });
+                //$('#post-submit').on('click', function () {
+                //    var content = editor.txt.html();
+                //    var categoryId = $('#categoryId').val();
+                //    var title = $('#title').val();
+                  
+                //    //$.ajax({
+                //    //    type: "POST",
+                //    //    url: "/post/save",
+                //    //    data: "categoryId=" + categoryId + "&title=" + title + "&content=" + content,
+                //    //    success: function (msg) {
+                //    //        alert("Data Saved: " + msg);
+                //    //    }
+                //    //});
+                //});
+
             </script>
+            <script type="text/javascript">
+                $('.chooseClub').on('click', function () {
+                    $(this).siblings('span').attr('class', 'chooseClub btn btn-sm btn-default');
+                    $(this).attr('class', 'chooseClub btn btn-sm btn-primary');
+                    var cageoryId = $(this).attr('data-cid');
+                    $('#categoryId').val(cageoryId);
+                })
+            </script>
+
             <div class="footer">
                 <div class="pull-right mobile-hide">
                     苏ICP备13055054号-2.

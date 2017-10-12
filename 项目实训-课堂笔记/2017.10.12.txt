@@ -1,0 +1,10 @@
+1.jquery的常用操作方法
+2.jquery 设置选中样式并 设置选中的值
+ <script type="text/javascript">
+                                        $('.chooseClub').on('click',function() {
+                                            $(this).siblings('span').attr('class', 'chooseClub btn btn-sm btn-default');
+                                            $(this).attr('class', 'chooseClub btn btn-sm btn-primary');
+                                            var cageoryId = $(this).attr('data-cid');
+                                            $('#categoryId').val(cageoryId);
+                                        })
+                                    </script>
