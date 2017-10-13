@@ -244,6 +244,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Post.cs">
       <DependentUpon>Model1.tt</DependentUpon>

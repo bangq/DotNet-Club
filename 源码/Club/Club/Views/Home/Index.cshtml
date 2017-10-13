@@ -3,6 +3,7 @@
     Layout = null;
     var loginUser = (User)ViewBag.LoginUser;
 }
+@model List<Club.Models.ListPostModel>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,843 +154,100 @@
                             </script>
                             <div id="topic-list" class="ibox-content" style="border-top: none;">
                                 <div class="feed-activity-list">
-                                    <style>
-                                        .media-body:hover {
-                                            cursor: pointer;
-                                            background-color: #fffbf6;
+                                <style>
+                                    .media-body:hover {
+                                        cursor: pointer;
+                                        background-color: #fffbf6;
+                                    }
+
+                                    .topic-status {
+                                        border: 0 none;
+                                        color: #257494;
+                                    }
+
+                                    .topic-status .c-ico {
+                                        color: #257494;
+                                    }
+
+                                    .topic-status .c-num {
+                                        color: #257494;
+                                    }
+
+                                    .topic-views {
+                                        width: 40px;
+                                        height: auto;
+                                        border-radius: 3px;
+                                        text-align: center;
+                                        margin-left: 5px;
+                                    }
+
+                                    .topic-views .c-ico {
+                                        height: 20px;
+                                        color: #999;
+                                    }
+
+                                    .topic-views i {
+                                        display: inline-block;
+                                        position: relative;
+                                        top: -2px;
+                                        font-size: 19px;
+                                    }
+
+                                    .topic-views .c-num {
+                                        color: #999;
+                                    }
+
+                                    .topic-info b {
+                                        color: #ed5565;
+                                    }
+                                </style>
+                                    @{
+                                        foreach (var item in Model)
+                                        {
+                                            <div class="feed-element">
+                                                <a class="pull-left" href="User/803.htm" >
+                                                    <img class="topic-avatar" src="/Assets/images/logo.png"
+                                                          style="display: inline;">
+                                                </a>
+                                                <div class="media-body " onclick="">
+                                                    <div class="topic-status pull-right hidden-xs hidden-sm">
+                                                        <div class="c-ico">
+                                                            <i class="fa fa-commenting"></i>
+                                                        </div>
+                                                        <div class="c-num">
+                                                            @item.ReplyCount
+                                                        </div>
+                                                    </div>
+                                                    <div class="topic-views pull-right hidden-xs hidden-sm">
+                                                        <div class="c-ico">
+                                                            <i class="iconfont icon-iconview"></i>
+                                                        </div>
+                                                        <div class="c-num">
+                                                            @item.ViewCount
+                                                        </div>
+                                                    </div>
+                                                    <strong>
+                                                        <a class="topic-title">
+                                                            <span>@item.Title</span>
+                                                        </a>
+                                                    </strong>
+                                                    <p class="topic-info">
+                                                        <small class="text-muted">
+                                                            <span class="topic-username">@item.UserName</span>
+                                                           @item.CreateTime
+                                                        </small> <small class="text-muted pull-right hidden-md hidden-lg"
+                                                                        style="margin-left: 10px; min-width: 60px;">
+                                                            <i class="fa fa-commenting"></i>&nbsp;@item.ViewCount
+                                                            / @item.ReplyCount
+                                                        </small>
+                                                    </p>
+                                                </div>
+                                            </div>
+
                                         }
-
-                                        .topic-status {
-                                            border: 0 none;
-                                            color: #257494;
-                                        }
-
-                                            .topic-status .c-ico {
-                                                color: #257494;
-                                            }
-
-                                            .topic-status .c-num {
-                                                color: #257494;
-                                            }
-
-                                        .topic-views {
-                                            width: 40px;
-                                            height: auto;
-                                            border-radius: 3px;
-                                            text-align: center;
-                                            margin-left: 5px;
-                                        }
-
-                                            .topic-views .c-ico {
-                                                height: 20px;
-                                                color: #999;
-                                            }
-
-                                            .topic-views i {
-                                                display: inline-block;
-                                                position: relative;
-                                                top: -2px;
-                                                font-size: 19px;
-                                            }
-
-                                            .topic-views .c-num {
-                                                color: #999;
-                                            }
-
-                                        .topic-info b {
-                                            color: #ed5565;
-                                        }
-                                    </style>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/803.htm" tppabs="http://bbs.bangke.com/User/803">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oEicw3p2UlQutOPfSxOvpJLLAkljsyYZJDxvAFoSQtj1dwZB6XXup3ZgtnH2ZmAcGb6b2KjA4ohuH/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/619.htm'/*tpa=http://bbs.bangke.com/Read/619*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    5
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    89
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>辟谷养生</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">海华</span>
-                                                    5月18日 01:00
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;89
-                                                    / 5
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/543.htm'/*tpa=http://bbs.bangke.com/Read/543*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    1
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    202
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span class="text-danger">[活动]</span><span>【亲子帮】9月24日手作课堂再开课~只知道吃水果？快来看水果印画！</span>
-                                                    <span class="text-danger">[置顶]</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 9月23日 10:18
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;<b>202</b>
-                                                    / 1
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/531.htm'/*tpa=http://bbs.bangke.com/Read/531*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    246
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span class="text-danger">[活动]</span><span>【亲子帮】9月24日·艺尔艺土耳其Ebru(湿拓画）艺术活动</span>
-                                                    <span class="text-danger">[置顶]</span>
-                                                    <span class="text-navy">[精]</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 9月19日 11:23
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;<b>246</b>
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/528.htm'/*tpa=http://bbs.bangke.com/Read/528*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    1
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    118
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>【亲子帮】萌萌小猪包出锅啦，有你制作的么？</span>
-                                                    <span class="text-danger">[置顶]</span>
-                                                    <span class="text-navy">[精]</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 9月18日 14:27
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;<b>118</b>
-                                                    / 1
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/326.htm'/*tpa=http://bbs.bangke.com/Read/326*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    5
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    242
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>从今往后，你们的手机话费我！包！了！！！！</span>
-                                                    <span class="text-danger">[置顶]</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 7月20日 09:57
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;<b>242</b>
-                                                    / 5
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/6.htm" tppabs="http://bbs.bangke.com/User/6">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLVIt7h6Iy1JU299DZE9hYOX1SlTqgTO9NZ1I1e0n4RyxDj3PyhXZANYZEiatwOtn9couZYkyw273eQ/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/176.htm'/*tpa=http://bbs.bangke.com/Read/176*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    37
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    1125
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>【原创】您绝对不容错过的摄影投票攻略</span>
-                                                    <span class="text-danger">[置顶]</span>
-                                                    <span class="text-navy">[精]</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">承志</span>
-                                                    16年 7月2日 13:08
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;<b>1125</b>
-                                                    / <b>37</b>
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/49.htm'/*tpa=http://bbs.bangke.com/Read/49*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    17
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="text-danger">
-                                                    386
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>玩转帮客金币，大家一起来赚金币，金币可以当钱花~~~~</span>
-                                                    <span class="text-danger">[置顶]</span>
-                                                    <span class="text-navy">[精]</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 6月15日 10:40
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;<b>386</b>
-                                                    / <b>17</b>
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/175.htm" tppabs="http://bbs.bangke.com/User/175">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oF7jG11ZzA7TqQiaPYTomuLQHY2hGibJjL0RJQdAA9RHiagkOjIBmD9knEfdic3Q8xWgYuFjFwylMklR/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/618.htm'/*tpa=http://bbs.bangke.com/Read/618*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    34
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_618 class="topic-title">
-                                                    <span>我们的行为，是对孩子最厉害的“洗脑”方法！</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">雪碧</span>
-                                                    16年 11月3日 13:01
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;34
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/175.htm" tppabs="http://bbs.bangke.com/User/175">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oF7jG11ZzA7TqQiaPYTomuLQHY2hGibJjL0RJQdAA9RHiagkOjIBmD9knEfdic3Q8xWgYuFjFwylMklR/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/617.htm'/*tpa=http://bbs.bangke.com/Read/617*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    38
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>一定要带孩子去旅行，可惜80％的家长不懂！</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">雪碧</span>
-                                                    16年 11月2日 15:28
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;38
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/616.htm'/*tpa=http://bbs.bangke.com/Read/616*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    29
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_616 class="topic-title">
-                                                    <span>妹子挑个豆浆机竟引来7万条评论！这场年度大戏够我笑半年，哈哈哈哈</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 11月1日 16:34
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;29
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/615.htm'/*tpa=http://bbs.bangke.com/Read/615*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    31
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_615 class="topic-title">
-                                                    <span>听说常州有人居然开宝马吃低保？政府清退近3000户低保家庭！</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 11月1日 14:22
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;31
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/270.htm" tppabs="http://bbs.bangke.com/User/270">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/PiajxSqBRaEJFM1urpG4iayDxJFKibiaQQMicYSg5t09Yia3zhxUzpvaoU0uMXEI7zTcsjRDXMwSL8l0Nld0ScQgiasOQ/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/614.htm'/*tpa=http://bbs.bangke.com/Read/614*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    34
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_614 class="topic-title">
-                                                    <span>史上最变态的冷知识，太长知识了！</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">发发发发发次</span>
-                                                    16年 10月31日 17:03
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;34
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/175.htm" tppabs="http://bbs.bangke.com/User/175">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oF7jG11ZzA7TqQiaPYTomuLQHY2hGibJjL0RJQdAA9RHiagkOjIBmD9knEfdic3Q8xWgYuFjFwylMklR/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/613.htm'/*tpa=http://bbs.bangke.com/Read/613*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    41
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_613 class="topic-title">
-                                                    <span>宝宝拉啥样便便需要看医生</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">雪碧</span>
-                                                    16年 10月28日 15:25
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;41
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/612.htm'/*tpa=http://bbs.bangke.com/Read/612*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    33
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_612 class="topic-title">
-                                                    <span>如何收拾违章司机</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 10月27日 17:15
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;33
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/175.htm" tppabs="http://bbs.bangke.com/User/175">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oF7jG11ZzA7TqQiaPYTomuLQHY2hGibJjL0RJQdAA9RHiagkOjIBmD9knEfdic3Q8xWgYuFjFwylMklR/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/611.htm'/*tpa=http://bbs.bangke.com/Read/611*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    20
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_611 class="topic-title">
-                                                    <span>不快乐的教育，会毁掉孩子的一生</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">雪碧</span>
-                                                    16年 10月27日 13:53
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;20
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/270.htm" tppabs="http://bbs.bangke.com/User/270">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/PiajxSqBRaEJFM1urpG4iayDxJFKibiaQQMicYSg5t09Yia3zhxUzpvaoU0uMXEI7zTcsjRDXMwSL8l0Nld0ScQgiasOQ/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/610.htm'/*tpa=http://bbs.bangke.com/Read/610*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    32
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>蓝色暴雨预警升黄色！常州的天啊，可以带我保暖带我飞吗？</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">发发发发发次</span>
-                                                    16年 10月26日 17:26
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;32
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/250.htm" tppabs="http://bbs.bangke.com/User/250">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/50HcP4UOeLXTkE2LYnmxW2zaTrl83DzC6ycQIm0jibpPPy3htr0bp3IvNsNN3AyghSBd8zPWuk2JMgRzAAUqJlw/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/609.htm'/*tpa=http://bbs.bangke.com/Read/609*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    28
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_609 class="topic-title">
-                                                    <span>那一天，我的狗终于回想起了被智障控制的恐惧</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">爱吃凤梨酥</span>
-                                                    16年 10月26日 16:51
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;28
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/175.htm" tppabs="http://bbs.bangke.com/User/175">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oF7jG11ZzA7TqQiaPYTomuLQHY2hGibJjL0RJQdAA9RHiagkOjIBmD9knEfdic3Q8xWgYuFjFwylMklR/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/608.htm'/*tpa=http://bbs.bangke.com/Read/608*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    23
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_608 class="topic-title">
-                                                    <span>最牛班主任的讲话，字字珠玑，句句戳心</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">雪碧</span>
-                                                    16年 10月26日 14:22
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;23
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/175.htm" tppabs="http://bbs.bangke.com/User/175">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/xTFa1fvvOjpqsWg5MRk6oF7jG11ZzA7TqQiaPYTomuLQHY2hGibJjL0RJQdAA9RHiagkOjIBmD9knEfdic3Q8xWgYuFjFwylMklR/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/607.htm'/*tpa=http://bbs.bangke.com/Read/607*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    35
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a id=tt_607 class="topic-title">
-                                                    <span>5个童话故事，让孩子学会自我保护(妈妈们必看哦)</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">雪碧</span>
-                                                    16年 10月25日 13:47
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;35
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="feed-element">
-                                        <a class="pull-left" href="User/270.htm" tppabs="http://bbs.bangke.com/User/270">
-                                            <img class="topic-avatar" src=""
-                                                 data-original="http://wx.qlogo.cn/mmopen/PiajxSqBRaEJFM1urpG4iayDxJFKibiaQQMicYSg5t09Yia3zhxUzpvaoU0uMXEI7zTcsjRDXMwSL8l0Nld0ScQgiasOQ/0" style="display: inline;">
-                                        </a>
-                                        <div class="media-body " onclick="window.open('Read/606.htm'/*tpa=http://bbs.bangke.com/Read/606*/)">
-                                            <div class="topic-status pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="fa fa-commenting"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div class="topic-views pull-right hidden-xs hidden-sm">
-                                                <div class="c-ico">
-                                                    <i class="iconfont icon-iconview"></i>
-                                                </div>
-                                                <div class="c-num">
-                                                    24
-                                                </div>
-                                            </div>
-                                            <strong>
-                                                <a class="topic-title">
-                                                    <span>2016年十大网络流行语，你“懂”几个？</span>
-                                                </a>
-                                            </strong>
-                                            <p class="topic-info">
-                                                <small class="text-muted">
-                                                    <span class="topic-username">发发发发发次</span>
-                                                    16年 10月24日 17:23
-                                                </small> <small class="text-muted pull-right hidden-md hidden-lg"
-                                                                style="margin-left: 10px; min-width: 60px;">
-                                                    <i class="fa fa-commenting"></i>&nbsp;24
-                                                    / 0
-                                                </small>
-                                            </p>
-                                        </div>
-                                    </div>
+                                    }
+                                 
+                                    
                                     <div class="pages">
                                         <ul>
                                             <li><a class=pages_on )>1</a></li>
