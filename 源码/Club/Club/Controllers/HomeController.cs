@@ -18,6 +18,7 @@ namespace Club.Controllers
             var loginUser= (User)Session["loginUser"];
             ViewBag.LoginUser = loginUser;
 
+            var cookies=new HttpCookie("User");
             using (var db=new ClubEntities())
             {
                 var postList=new List<ListPostModel>();
