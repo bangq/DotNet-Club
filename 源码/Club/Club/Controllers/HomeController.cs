@@ -11,22 +11,40 @@ namespace Club.Controllers
 {
     public class HomeController : Controller
     {
-        [AuthFilter]
+
         public ActionResult Index()
         {
 
-            var loginUser= (User)Session["loginUser"];
+
+
+            var dt = DateTime.Now.AddDays(3);
+
+            var dttime = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0);
+
+            var dayofWeek = dt.DayOfWeek;
+            int dayOfWeek = Convert.ToInt32(dayofWeek.ToString("d"));
+
+            if (dayOfWeek == 0)
+                dayOfWeek = 7;
+
+            var beginOfWeek = dttime.AddDays(1 - dayOfWeek);
+            var endOfWeek = beginOfWeek.AddDays(6);
+
+            var beginOfMonth=new DateTime(dt.Year,dt.Month,1,0,0,0,0,0);
+
+
+            var loginUser = (User)Session["loginUser"];
             ViewBag.LoginUser = loginUser;
 
-            var cookies=new HttpCookie("User");
-            using (var db=new ClubEntities())
+            var cookies = new HttpCookie("User");
+            using (var db = new ClubEntities())
             {
-                var postList=new List<ListPostModel>();
+                var postList = new List<ListPostModel>();
                 var list = db.Post.ToList();
 
                 foreach (var item in list)
                 {
-                    var postModel=new ListPostModel();
+                    var postModel = new ListPostModel();
                     postModel.Id = item.Id;
                     postModel.Title = item.Title;
                     postModel.CreateTime = item.CreateTime;
@@ -39,9 +57,9 @@ namespace Club.Controllers
 
                 return View(postList);
             }
-             
+
         }
 
-        
+
     }
 }
