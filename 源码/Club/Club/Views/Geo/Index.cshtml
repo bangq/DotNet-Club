@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+ 
+
+<link href="/Assets/Styles/bootstrap.min.css" rel="stylesheet">
+<link href="/Assets/Styles/style.css" rel="stylesheet">
+<div class="col-sm-7">
+    <form action="/geo/add" method="post">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>新增坐标点</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row form-body form-horizontal m-t">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">区域名称：</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Name" class="form-control" placeholder="区域名称"> <span class="help-block m-b-none">坐标点的名称</span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">经纬度：</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="LongitudeAndLatitude" class="form-control" placeholder="经度,纬度"> <span class="help-block m-b-none">可以用百度的坐标失去工具</span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-3">
+                        <button class="btn btn-primary" type="submit">保存内容</button>
+                        <a class="btn btn-w-m btn-primary" target="_blank" href="http://api.map.baidu.com/lbsapi/getpoint/index.html">去百度拾取</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+</div>
+
+<div class="col-sm-7">
+    <form action="/geo/Radius" method="post">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>根据坐标取附近的店铺</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row form-body form-horizontal m-t">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">经纬度：</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="LongitudeAndLatitude" class="form-control" placeholder="经度,纬度"> <span class="help-block m-b-none">可以用百度的坐标失去工具</span>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">半径（米）：</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Radius" class="form-control" placeholder="半径"> <span class="help-block m-b-none">半径单位:米</span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-3">
+                        <button class="btn btn-primary" type="submit">搜索</button>
+                        <a class="btn btn-w-m btn-primary" target="_blank" href="http://api.map.baidu.com/lbsapi/getpoint/index.html">去百度拾取</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+</div>

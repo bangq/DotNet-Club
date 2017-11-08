@@ -106,3 +106,5 @@ D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\zh-Hans\Microsoft.Owin.Secu
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.dll
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.pdb
 D:\Work\GitProjects\DotNet-Club\源码\Club\Club\obj\Debug\Club.csprojResolveAssemblyReference.cache
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\StackExchange.Redis.dll
+D:\Work\GitProjects\DotNet-Club\源码\Club\Club\bin\StackExchange.Redis.xml
